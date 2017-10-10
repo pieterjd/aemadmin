@@ -1,5 +1,7 @@
 package com.pieterjd.aemadmin.command;
 
+import com.pieterjd.aemadmin.config.ConfigBuilder;
+import com.pieterjd.aemadmin.config.LocalAuthorConfigBuilder;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.http.HttpResponse;
@@ -31,27 +33,13 @@ public abstract class HttpRequestCommand extends AbstractCommand {
 
     private Properties properties;
 
-    private static Properties readDefaultProperties(){
-        Properties result = new Properties();
-        try (InputStream inputStream = ClassLoader.getSystemResourceAsStream("localhost.properties")){
-            result.load(inputStream);
-        } catch (IOException e) {
-            /*
-            result.put("baseUrl","http://localhost");
-            result.put("port","4502");
-            result.put("userName","admin");
-            result.put("password","admin");
-            */
-        }
-        return result;
-    }
 
     public HttpRequestCommand() {
 
-        this(readDefaultProperties());
+        this(new LocalAuthorConfigBuilder());
     }
-    public HttpRequestCommand(Properties props){
-        setProperties(props);
+    public HttpRequestCommand(ConfigBuilder configBuilder){
+        setProperties(configBuilder.build());
         setHttpClient(HttpClients.createDefault());
     }
 

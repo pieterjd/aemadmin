@@ -68,7 +68,7 @@ public class PropertiesConfigBuilder extends ConfigBuilder {
      * updates the port property
      */
     public void withPort(int port) {
-        properties.put("port",port);
+        properties.put("port",String.valueOf(port));
     }
 
     @Override
