@@ -12,6 +12,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import com.github.tsohr.JSONObject;
+import sun.security.krb5.Config;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -28,30 +29,25 @@ public abstract class HttpRequestCommand extends AbstractCommand {
 
     private CloseableHttpClient httpClient;
     private HttpResponse httpResponse;
-
-
-
-    private Properties properties;
-
+    private ConfigBuilder configBuilder;
 
     public HttpRequestCommand() {
 
         this(new LocalAuthorConfigBuilder());
     }
     public HttpRequestCommand(ConfigBuilder configBuilder){
-        setProperties(configBuilder.build());
+        setConfigBuilder(configBuilder);
         setHttpClient(HttpClients.createDefault());
     }
 
-
+    private void setConfigBuilder(ConfigBuilder configBuilder){
+        this.configBuilder = configBuilder;
+    }
 
     public Properties getProperties() {
-        return properties;
+        return configBuilder.build();
     }
 
-    public void setProperties(Properties properties) {
-        this.properties = properties;
-    }
     public String getUserName() {
         return getProperties().getProperty("userName");
     }
