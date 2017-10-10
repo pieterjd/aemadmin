@@ -1,0 +1,9 @@
+*.idea
+*.iml
+**/target/
+**/node_modules/
+**/target
+**/resources/*
+!**/resources/localhost.properties
+**/mvc*/*
+**/kpngb*/*
