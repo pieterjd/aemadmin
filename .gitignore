@@ -6,4 +6,5 @@
 **/resources/*
 !**/resources/localhost.properties
 **/mvc*/*
+**/mivc*/*
 **/kpngb*/*
