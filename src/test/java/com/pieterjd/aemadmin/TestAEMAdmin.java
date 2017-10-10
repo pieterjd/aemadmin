@@ -1,4 +1,4 @@
-package com.pieterjd;
+package com.pieterjd.aemadmin;
 
 import com.pieterjd.aemadmin.command.AbstractCommand;
 import com.pieterjd.aemadmin.command.HttpRequestCommand;
@@ -14,6 +14,8 @@ import java.io.IOException;
 
 /**
  * Created by pdrouill on 23/08/2017.
+ *
+ * These test should run fine on a quickstart AEM install.
  */
 
 
@@ -42,12 +44,6 @@ public class TestAEMAdmin {
         c = new GetNodeCommand("/contentbla");
         c.execute();
         Assert.assertFalse(c.isSuccess());
-
-    }
-    @Test
-    public void testCopyAndDeleteNodeCommand(){
-        HttpRequestCommand c = new CopyNodeCommand("/apps/settings","/settingscopy");
-        c.execute();
 
     }
 
