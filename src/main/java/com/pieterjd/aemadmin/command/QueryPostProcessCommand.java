@@ -8,8 +8,10 @@ import com.pieterjd.aemadmin.command.crx.property.SetPropertyCommand;
 /**
  * A PostProcess command specific for queries.
  */
-public abstract class QueryPostProcessCommand extends PostProcessCommand<QueryCommand> {
-    public QueryPostProcessCommand(QueryCommand command) {
+public abstract class QueryPostProcessCommand<T extends QueryCommand> extends PostProcessCommand<T> {
+
+
+    public QueryPostProcessCommand(T command) {
         super(command);
     }
 
