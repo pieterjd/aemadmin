@@ -4,6 +4,7 @@ import com.pieterjd.aemadmin.command.crx.CrxCommand;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.io.UnsupportedEncodingException;
@@ -35,11 +36,11 @@ public class CopyPageCommand extends CrxCommand {
     public HttpUriRequest getRequest() throws URISyntaxException {
         HttpUriRequest result = null;
         List<NameValuePair> params = new ArrayList<>();
-        params.add(new BasicNameValuePair(":operation","copy"));
-        params.add(new BasicNameValuePair(":applyTo",getPath()));
-        params.add(new BasicNameValuePair(":dest",getDestination()));
+        params.add(new BasicNameValuePair("cmd","copyPage"));
+        params.add(new BasicNameValuePair("srcPath",getPath()));
+        params.add(new BasicNameValuePair("destParentPath",getDestination()));
         try {
-            result = getAuthenticatedPostRequestBuilder(getPath())
+            result = getAuthenticatedPostRequestBuilder("/bin/wcmcommand")
                    .setEntity(new UrlEncodedFormEntity(params))
                    .build();
         } catch (UnsupportedEncodingException e) {
@@ -47,10 +48,4 @@ public class CopyPageCommand extends CrxCommand {
         }
         return result;
     }
-    /*
-    @Override
-    public String toString() {
-        return getToStringBuilder().build();
-    }
-    */
 }
