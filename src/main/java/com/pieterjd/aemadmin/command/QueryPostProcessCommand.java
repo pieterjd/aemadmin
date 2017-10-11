@@ -1,4 +1,35 @@
 package com.pieterjd.aemadmin.command;
 
-public class QueryPostProcessCommand {
+
+import com.github.tsohr.JSONArray;
+import com.github.tsohr.JSONObject;
+import com.pieterjd.aemadmin.command.crx.property.SetPropertyCommand;
+
+/**
+ * A PostProcess command specific for queries.
+ */
+public abstract class QueryPostProcessCommand extends PostProcessCommand<QueryCommand> {
+    public QueryPostProcessCommand(QueryCommand command) {
+        super(command);
+    }
+
+    /**
+     * Queries return JSON with an array called hits. This method will process one element of this array
+     * @param hit the result to process
+     */
+    public abstract void postProcessOneResult(JSONObject hit);
+
+    /**
+     * Loops over all searchresults and calls {@link #postProcess()}for each searchresult
+     */
+    @Override
+    public void postProcess() {
+        JSONObject results = getCommand().getQueryResult();
+        JSONArray hits = results.getJSONArray("hits");
+        System.out.println("# hits: " + hits.length());
+        for (int i = 0; i < hits.length(); i++) {
+           postProcessOneResult(hits.getJSONObject(i));
+        }
+
+    }
 }
