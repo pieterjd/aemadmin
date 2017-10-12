@@ -1,6 +1,7 @@
 package com.pieterjd.aemadmin.command.aem;
 
 import com.pieterjd.aemadmin.command.crx.CrxCommand;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpUriRequest;
@@ -47,5 +48,12 @@ public class CopyPageCommand extends CrxCommand {
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    protected ToStringBuilder getToStringBuilder() {
+        return super.getToStringBuilder()
+                .append("source",getPath())
+                .append("destination",getDestination());
     }
 }

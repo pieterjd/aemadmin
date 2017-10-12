@@ -24,6 +24,7 @@ import java.util.Properties;
 
 /**
  * Created by pdrouill on 21/06/2017.
+ * Command that executes a httprequest. Contains a lot of helper function, eg create authenticated requests.
  */
 public abstract class HttpRequestCommand extends AbstractCommand {
 
@@ -31,10 +32,18 @@ public abstract class HttpRequestCommand extends AbstractCommand {
     private HttpResponse httpResponse;
     private ConfigBuilder configBuilder;
 
+    /**
+     * Creates HttpRequestCommand using local author
+     */
     public HttpRequestCommand() {
 
         this(new LocalAuthorConfigBuilder());
     }
+
+    /**
+     * Creates HttpRequestCommand using the given config builder
+     * @param configBuilder
+     */
     public HttpRequestCommand(ConfigBuilder configBuilder){
         setConfigBuilder(configBuilder);
         setHttpClient(HttpClients.createDefault());
@@ -88,6 +97,11 @@ public abstract class HttpRequestCommand extends AbstractCommand {
         this.httpResponse = httpResponse;
     }
 
+    /**
+     *
+     * @return the request that the command will execute
+     * @throws URISyntaxException
+     */
     public abstract HttpUriRequest getRequest() throws URISyntaxException;
 
     //helper methods
@@ -153,6 +167,9 @@ public abstract class HttpRequestCommand extends AbstractCommand {
     }
 
 
+    /**
+     * Default implementation. It executes the result of {@link #getRequest()}
+     */
     @Override
     public void execute() {
         try {

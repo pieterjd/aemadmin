@@ -6,7 +6,9 @@ import com.github.tsohr.JSONObject;
 import com.pieterjd.aemadmin.command.crx.property.SetPropertyCommand;
 
 /**
- * A PostProcess command specific for queries.
+ * A PostProcess command specific for queries. Usually you want to process the results
+ * of a query. This class is provided to avoid boilerplate code. You only need to extend
+ * this class and implement {@link #postProcessOneResult(JSONObject)}
  */
 public abstract class QueryPostProcessCommand<T extends QueryCommand> extends PostProcessCommand<T> {
 
