@@ -6,6 +6,7 @@ import com.pieterjd.aemadmin.command.LoginCommand;
 import com.pieterjd.aemadmin.command.StatusBundlesCommand;
 import com.pieterjd.aemadmin.command.crx.node.CopyNodeCommand;
 import com.pieterjd.aemadmin.command.crx.node.GetNodeCommand;
+import com.pieterjd.aemadmin.command.crx.node.ReorderNodeAfterCommand;
 import com.pieterjd.aemadmin.command.crx.property.GetPropertyCommand;
 import org.apache.commons.lang3.builder.ToStringExclude;
 import org.junit.Assert;
@@ -15,20 +16,21 @@ import java.io.IOException;
 
 /**
  * Created by pdrouill on 23/08/2017.
- *
+ * <p>
  * These test should run fine on a quickstart AEM install.
  */
 
 
 public class TestAEMAdmin {
     @Test
-    public void testLoginCommand(){
+    public void testLoginCommand() {
         LoginCommand c = new LoginCommand();
         c.execute();
-        Assert.assertEquals(c.isSuccess(),true);
+        Assert.assertEquals(c.isSuccess(), true);
     }
+
     @Test
-    public void testStatusCommand(){
+    public void testStatusCommand() {
         HttpRequestCommand c = new StatusBundlesCommand();
         c.execute();
         try {
@@ -37,8 +39,9 @@ public class TestAEMAdmin {
             e.printStackTrace();
         }
     }
+
     @Test
-    public void testGetNodeCommand(){
+    public void testGetNodeCommand() {
         HttpRequestCommand c = new GetNodeCommand("/content");
         c.execute();
         Assert.assertTrue(c.isSuccess());
@@ -49,13 +52,26 @@ public class TestAEMAdmin {
     }
 
     @Test
-    public void testGetPropertyCommand(){
-        GetPropertyCommand gpc = new GetPropertyCommand("/etc/social/rep:policy/allow","rep:privileges");
+    public void testGetPropertyCommand() {
+        GetPropertyCommand gpc = new GetPropertyCommand("/etc/social/rep:policy/allow", "rep:privileges");
         gpc.execute();
         Assert.assertTrue(gpc.isMultiValue());
-        gpc = new GetPropertyCommand("/etc/social/rep:policy/allow","jcr:primaryType");
+        gpc = new GetPropertyCommand("/etc/social/rep:policy/allow", "jcr:primaryType");
         gpc.execute();
         Assert.assertFalse(gpc.isMultiValue());
+    }
+
+    @Test
+    public void testOrderAfterCommand() {
+        /*
+        under /content/kpngb-base/jcr:content:
+        node image-retail is put after title-retail
+         */
+
+        ReorderNodeAfterCommand c = new ReorderNodeAfterCommand("/content/kpngb-base/jcr:content/image-retail",
+                "title-retail");
+        c.execute();
+        System.out.println("Check in crx if order has been updated");
     }
 
 }

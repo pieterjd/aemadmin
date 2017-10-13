@@ -14,6 +14,18 @@ import java.util.List;
 
 /**
  * Created by pdrouill on 11/07/2017.
+ * Reorders by putting one node explicitly after an other.
+ *
+ * Example:
+ * Suppose you have parent /content/a/b
+ * It has 2 nodes child2 and child1 and you want to put child2 after child1
+ * Then you would create the following object:
+ * <pre>
+ *     <code>
+ *         new {@link ReorderNodeAfterCommand} ("/content/a/b/child2" "child1"
+ *     </code>
+ * </pre>
+ *
  */
 public class ReorderNodeAfterCommand extends CrxCommand{
     private String putAfterNode;
@@ -43,10 +55,10 @@ public class ReorderNodeAfterCommand extends CrxCommand{
     public HttpUriRequest getRequest() throws URISyntaxException {
         HttpUriRequest result = null;
         List<NameValuePair> params = new ArrayList<>();
-        params.add(new BasicNameValuePair("order","after "+getPutAfterNode()));
+        params.add(new BasicNameValuePair(":order","after "+getPutAfterNode()));
 
         try {
-            result = getAuthenticatedGetRequestBuilder(getPath())
+            result = getAuthenticatedPostRequestBuilder(getPath())
                     .setEntity(new UrlEncodedFormEntity(params))
                     .build();
         } catch (UnsupportedEncodingException e) {
