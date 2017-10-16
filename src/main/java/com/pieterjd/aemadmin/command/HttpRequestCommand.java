@@ -49,7 +49,7 @@ public abstract class HttpRequestCommand extends AbstractCommand {
         setHttpClient(HttpClients.createDefault());
     }
 
-    private void setConfigBuilder(ConfigBuilder configBuilder){
+    public void setConfigBuilder(ConfigBuilder configBuilder){
         this.configBuilder = configBuilder;
     }
 
