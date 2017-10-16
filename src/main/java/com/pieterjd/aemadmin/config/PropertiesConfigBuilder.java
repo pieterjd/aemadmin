@@ -43,32 +43,36 @@ public class PropertiesConfigBuilder extends ConfigBuilder {
     /**
      * Updates the userName property
      */
-    public void withUserName(String userName) {
+    public ConfigBuilder withUserName(String userName) {
         properties.put("userName",userName);
+        return this;
     }
 
     @Override
     /**
      * updates the password property
      */
-    public void withPassword(String password) {
+    public ConfigBuilder withPassword(String password) {
         properties.put("password",password);
+        return this;
     }
 
     @Override
     /**
      * updates the baseUrl property
      */
-    public void withBaseUrl(String baseUrl) {
+    public ConfigBuilder withBaseUrl(String baseUrl) {
         properties.put("baseUrl",baseUrl);
+        return this;
     }
 
     @Override
     /**
      * updates the port property
      */
-    public void withPort(int port) {
+    public ConfigBuilder withPort(int port) {
         properties.put("port",String.valueOf(port));
+        return this;
     }
 
     @Override
