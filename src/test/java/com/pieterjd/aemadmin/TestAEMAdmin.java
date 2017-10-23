@@ -70,7 +70,7 @@ public class TestAEMAdmin {
 
     @Test
     public void testGetPropertyCommand() {
-        GetPropertyCommand gpc = new GetPropertyCommand("/etc/social/rep:policy/allow", "rep:privileges");
+        GetPropertyCommand gpc = new GetPropertyCommand("/etc/clientlibs/rep:policy/allow", "rep:privileges");
         gpc.setConfigBuilder(configBuilder);
         gpc.execute();
         Assert.assertTrue(gpc.isMultiValue());
