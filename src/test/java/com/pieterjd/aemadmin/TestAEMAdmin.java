@@ -74,7 +74,7 @@ public class TestAEMAdmin {
         gpc.setConfigBuilder(configBuilder);
         gpc.execute();
         Assert.assertTrue(gpc.isMultiValue());
-        gpc = new GetPropertyCommand("/etc/social/rep:policy/allow", "jcr:primaryType");
+        gpc = new GetPropertyCommand("/etc/clientlibs/rep:policy/allow", "jcr:primaryType");
         gpc.setConfigBuilder(configBuilder);
         gpc.execute();
         Assert.assertFalse(gpc.isMultiValue());
