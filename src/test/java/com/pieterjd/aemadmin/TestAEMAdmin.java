@@ -1,17 +1,13 @@
 package com.pieterjd.aemadmin;
 
-import com.pieterjd.aemadmin.command.AbstractCommand;
 import com.pieterjd.aemadmin.command.HttpRequestCommand;
 import com.pieterjd.aemadmin.command.LoginCommand;
 import com.pieterjd.aemadmin.command.StatusBundlesCommand;
-import com.pieterjd.aemadmin.command.crx.node.CopyNodeCommand;
 import com.pieterjd.aemadmin.command.crx.node.GetNodeCommand;
 import com.pieterjd.aemadmin.command.crx.node.ReorderNodeAfterCommand;
 import com.pieterjd.aemadmin.command.crx.property.GetPropertyCommand;
 import com.pieterjd.aemadmin.config.ConfigBuilder;
-import com.pieterjd.aemadmin.config.LocalPublishConfigBuilder;
-import com.pieterjd.aemadmin.config.PropertiesConfigBuilder;
-import org.apache.commons.lang3.builder.ToStringExclude;
+import com.pieterjd.aemadmin.config.LocalAuthorConfigBuilder;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,7 +26,7 @@ public class TestAEMAdmin {
 
     @Before
     public void setUp(){
-        configBuilder = new LocalPublishConfigBuilder();
+        configBuilder = new LocalAuthorConfigBuilder();
     }
     @Test
     public void testLoginCommand() {
