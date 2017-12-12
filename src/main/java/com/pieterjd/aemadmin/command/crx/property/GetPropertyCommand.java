@@ -39,10 +39,12 @@ public class GetPropertyCommand extends PropertyCommand {
     public String getPropertyValue(){
         try {
             return getHttpResponseAsJSON().getString(getPropertyName());
-        } catch (IOException e) {
+        } catch (Exception e) {
 
         }
-        return null;
+        finally {
+            return null;
+        }
     }
 
     public JSONArray getMultiPropertyValue(){
