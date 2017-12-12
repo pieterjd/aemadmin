@@ -34,15 +34,10 @@ public abstract class HttpRequestCommand extends AbstractCommand {
 
     private static Properties readDefaultProperties() {
         Properties result = new Properties();
-        try (InputStream inputStream = ClassLoader.getSystemResourceAsStream("localhost.properties")) {
+        try (InputStream inputStream = ClassLoader.getSystemResourceAsStream("aemadmin.properties")) {
             result.load(inputStream);
         } catch (IOException e) {
-        /*
- -            result.put("baseUrl","http://localhost");
- -            result.put("port","4502");
- -            result.put("userName","admin");
- -            result.put("password","admin");
- -            */
+            result = new LocalAuthorConfigBuilder().build();
         }
         return result;
     }
