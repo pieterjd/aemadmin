@@ -9,6 +9,7 @@ import com.pieterjd.aemadmin.command.crx.node.GetNodeCommand;
 import com.pieterjd.aemadmin.command.crx.node.ReorderNodeAfterCommand;
 import com.pieterjd.aemadmin.command.crx.property.GetPropertyCommand;
 import com.pieterjd.aemadmin.config.ConfigBuilder;
+import com.pieterjd.aemadmin.config.LocalPublishConfigBuilder;
 import com.pieterjd.aemadmin.config.PropertiesConfigBuilder;
 import org.apache.commons.lang3.builder.ToStringExclude;
 import org.junit.Assert;
@@ -29,12 +30,7 @@ public class TestAEMAdmin {
 
     @Before
     public void setUp(){
-        configBuilder = new PropertiesConfigBuilder();
-        configBuilder
-                .withBaseUrl("http://localhost")
-                .withPort(8081)
-                .withUserName("admin")
-                .withPassword("admin");
+        configBuilder = new LocalPublishConfigBuilder();
     }
     @Test
     public void testLoginCommand() {
@@ -63,6 +59,7 @@ public class TestAEMAdmin {
         c.execute();
         Assert.assertTrue(c.isSuccess());
         c = new GetNodeCommand("/contentbla");
+        c.setConfigBuilder(configBuilder);
         c.execute();
         Assert.assertFalse(c.isSuccess());
 

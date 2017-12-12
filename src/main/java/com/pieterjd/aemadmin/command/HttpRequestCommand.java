@@ -30,7 +30,22 @@ public abstract class HttpRequestCommand extends AbstractCommand {
 
     private CloseableHttpClient httpClient;
     private HttpResponse httpResponse;
-    private ConfigBuilder configBuilder;
+    private Properties properties;
+
+    private static Properties readDefaultProperties() {
+        Properties result = new Properties();
+        try (InputStream inputStream = ClassLoader.getSystemResourceAsStream("localhost.properties")) {
+            result.load(inputStream);
+        } catch (IOException e) {
+        /*
+ -            result.put("baseUrl","http://localhost");
+ -            result.put("port","4502");
+ -            result.put("userName","admin");
+ -            result.put("password","admin");
+ -            */
+        }
+        return result;
+    }
 
     /**
      * Creates HttpRequestCommand using local author
@@ -42,19 +57,24 @@ public abstract class HttpRequestCommand extends AbstractCommand {
 
     /**
      * Creates HttpRequestCommand using the given config builder
+     *
      * @param configBuilder
      */
-    public HttpRequestCommand(ConfigBuilder configBuilder){
+    public HttpRequestCommand(ConfigBuilder configBuilder) {
         setConfigBuilder(configBuilder);
         setHttpClient(HttpClients.createDefault());
     }
 
-    public void setConfigBuilder(ConfigBuilder configBuilder){
-        this.configBuilder = configBuilder;
+    public void setConfigBuilder(ConfigBuilder configBuilder) {
+        setProperties(configBuilder.build());
     }
 
     public Properties getProperties() {
-        return configBuilder.build();
+        return properties;
+    }
+
+    public void setProperties(Properties properties) {
+        this.properties = properties;
     }
 
     public String getUserName() {
@@ -62,11 +82,9 @@ public abstract class HttpRequestCommand extends AbstractCommand {
     }
 
 
-
     public String getPassword() {
         return getProperties().getProperty("password");
     }
-
 
 
     public String getBaseUrl() {
@@ -74,11 +92,9 @@ public abstract class HttpRequestCommand extends AbstractCommand {
     }
 
 
-
     public int getPort() {
         return Integer.parseInt(getProperties().getProperty("port"));
     }
-
 
 
     public CloseableHttpClient getHttpClient() {
@@ -98,7 +114,6 @@ public abstract class HttpRequestCommand extends AbstractCommand {
     }
 
     /**
-     *
      * @return the request that the command will execute
      * @throws URISyntaxException
      */
@@ -176,7 +191,7 @@ public abstract class HttpRequestCommand extends AbstractCommand {
 
             setHttpResponse(getHttpClient().execute(getRequest()));
             int statusCode = getHttpResponse().getStatusLine().getStatusCode();
-            setSuccess(200<=statusCode && statusCode<300);
+            setSuccess(200 <= statusCode && statusCode < 300);
 
         } catch (Exception e) {
             setSuccess(false);
@@ -193,8 +208,7 @@ public abstract class HttpRequestCommand extends AbstractCommand {
         String result = null;
         try {
             result = EntityUtils.toString(getHttpResponse().getEntity());
-        }
-        catch(Exception ioe){}
+        } catch (Exception ioe) {}
         return result;
     }
 
@@ -210,6 +224,7 @@ public abstract class HttpRequestCommand extends AbstractCommand {
 
     /**
      * Writes the response to a file.
+     *
      * @param file
      * @throws FileNotFoundException
      */
@@ -226,11 +241,10 @@ public abstract class HttpRequestCommand extends AbstractCommand {
     @Override
     protected ToStringBuilder getToStringBuilder() {
         ToStringBuilder result = super.getToStringBuilder();
-        if(getHttpResponse() != null){
-            result = result.append("httpResponseCode",getHttpResponse().getStatusLine().getStatusCode());
+        if (getHttpResponse() != null) {
+            result = result.append("httpResponseCode", getHttpResponse().getStatusLine().getStatusCode());
         }
         return result;
     }
-
 
 }
