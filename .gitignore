@@ -4,7 +4,8 @@
 **/node_modules/
 **/target
 **/resources/*
-!**/resources/localhost.properties
+!**/resources/aemadmin.properties
 **/mvc*/*
 **/mivc*/*
 **/kpngb*/*
+**/javadoc/*
