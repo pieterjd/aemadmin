@@ -53,7 +53,7 @@ public abstract class HttpRequestCommand extends AbstractCommand {
     /**
      * Creates HttpRequestCommand using the given config builder
      *
-     * @param configBuilder
+     * @param configBuilder ConfigBuilder used to setup all http requests
      */
     public HttpRequestCommand(ConfigBuilder configBuilder) {
         setConfigBuilder(configBuilder);
@@ -110,7 +110,8 @@ public abstract class HttpRequestCommand extends AbstractCommand {
 
     /**
      * @return the request that the command will execute
-     * @throws URISyntaxException
+     * @throws URISyntaxException When something is wrong with syntax
+     * of the uri you use to create the request
      */
     public abstract HttpUriRequest getRequest() throws URISyntaxException;
 
@@ -121,7 +122,8 @@ public abstract class HttpRequestCommand extends AbstractCommand {
      *
      * @param urlSuffix this will be appended to the baseUrl. Make sure it starts with "/"
      * @return RequestBuilder
-     * @throws URISyntaxException
+     * @throws URISyntaxException When something is wrong with syntax
+     * of the uri you use to create the request
      */
     protected RequestBuilder getAuthenticatedPostRequestBuilder(String urlSuffix) throws URISyntaxException {
         return RequestBuilder.post()
@@ -136,7 +138,8 @@ public abstract class HttpRequestCommand extends AbstractCommand {
      *
      * @param urlSuffix this will be appended to the baseUrl. Make sure it starts with "/"
      * @return RequestBuilder
-     * @throws URISyntaxException
+     * @throws URISyntaxException When something is wrong with syntax
+     * of the uri you use to create the request
      */
     protected RequestBuilder getAuthenticatedGetRequestBuilder(String urlSuffix) throws URISyntaxException {
         return RequestBuilder.get()
@@ -151,7 +154,8 @@ public abstract class HttpRequestCommand extends AbstractCommand {
      *
      * @param urlSuffix this will be appended to the baseUrl. Make sure it starts with "/"
      * @return RequestBuilder
-     * @throws URISyntaxException
+     * @throws URISyntaxException When something is wrong with syntax
+     * of the uri you use to create the request
      */
     protected RequestBuilder getAuthenticatedPutRequestBuilder(String urlSuffix) throws URISyntaxException {
         return RequestBuilder.put()
@@ -166,7 +170,8 @@ public abstract class HttpRequestCommand extends AbstractCommand {
      *
      * @param urlSuffix this will be appended to the baseUrl. Make sure it starts with "/"
      * @return RequestBuilder
-     * @throws URISyntaxException
+     * @throws URISyntaxException When something is wrong with syntax
+     * of the uri you use to create the request
      */
     protected RequestBuilder getAuthenticatedDeleteRequestBuilder(String urlSuffix) throws URISyntaxException {
         return RequestBuilder.delete()
@@ -198,39 +203,38 @@ public abstract class HttpRequestCommand extends AbstractCommand {
     /**
      * Returns the response as a String. The content depends on the actual command:
      * some responses are JSON, other are plain HTML, others are even something else.
+     * @return the response in String format
+     * @throws IOException Something goes wrong with getting the response
      */
     public String getHttpResponseAsString() throws IOException {
-        String result = null;
-        try {
-            result = EntityUtils.toString(getHttpResponse().getEntity());
-        } catch (Exception ioe) {}
-        return result;
+        return EntityUtils.toString(getHttpResponse().getEntity());
     }
 
     /**
      * @return The HTTP response as a JSONObject
-     * @throws IOException
+     * @throws IOException when something goes wrong getting the response
      */
     public JSONObject getHttpResponseAsJSON() throws IOException {
-        JSONObject result = null;
-        result = new JSONObject(getHttpResponseAsString());
-        return result;
+        return new JSONObject(getHttpResponseAsString());
     }
 
     /**
      * Writes the response to a file.
      *
-     * @param file
-     * @throws FileNotFoundException
+     * @param file the path of the file you want to write to
+     * @throws FileNotFoundException When you provide an invalid filepath
      */
     public void writeHttpResponseToFile(String file) throws FileNotFoundException {
         PrintWriter pw = new PrintWriter(file);
         try {
             pw.print(getHttpResponseAsString());
         } catch (IOException e) {
-            e.printStackTrace();
+
         }
-        pw.close();
+        finally {
+            pw.close();
+        }
+
     }
 
     @Override

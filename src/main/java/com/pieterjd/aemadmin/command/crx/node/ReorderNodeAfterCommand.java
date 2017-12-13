@@ -41,7 +41,7 @@ public class ReorderNodeAfterCommand extends ReorderNodeCommand{
 
     /**
      * Deprecated. Is provided for compactibility with version before refactoring.
-     * @return
+     * @return name of the sibling node
      */
     @Deprecated
     public String getPutAfterNode() {
