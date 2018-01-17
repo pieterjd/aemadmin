@@ -12,6 +12,8 @@ import java.util.List;
 
 /**
  * Created by pdrouill on 1/09/2017.
+ *
+ * Abstract class with all required functionality to do a tree replication.
  */
 public abstract class TreeReplicationCommand extends ReplicationCommand {
     private boolean ignoreDeactivated;

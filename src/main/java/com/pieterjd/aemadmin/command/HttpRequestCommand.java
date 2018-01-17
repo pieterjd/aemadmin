@@ -1,5 +1,6 @@
 package com.pieterjd.aemadmin.command;
 
+import com.github.tsohr.JSONObject;
 import com.pieterjd.aemadmin.config.ConfigBuilder;
 import com.pieterjd.aemadmin.config.LocalAuthorConfigBuilder;
 import org.apache.commons.codec.binary.Base64;
@@ -10,9 +11,6 @@ import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
-
-import com.github.tsohr.JSONObject;
-import sun.security.krb5.Config;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -47,7 +45,8 @@ public abstract class HttpRequestCommand extends AbstractCommand {
      */
     public HttpRequestCommand() {
 
-        this(new LocalAuthorConfigBuilder());
+       setProperties(readDefaultProperties());
+        setHttpClient(HttpClients.createDefault());
     }
 
     /**
