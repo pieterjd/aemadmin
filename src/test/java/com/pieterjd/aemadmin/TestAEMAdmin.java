@@ -1,8 +1,11 @@
 package com.pieterjd.aemadmin;
 
+import com.github.tsohr.JSONArray;
+import com.github.tsohr.JSONObject;
 import com.pieterjd.aemadmin.command.HttpRequestCommand;
 import com.pieterjd.aemadmin.command.LoginCommand;
 import com.pieterjd.aemadmin.command.StatusBundlesCommand;
+import com.pieterjd.aemadmin.command.aem.security.SearchPrincipalCommand;
 import com.pieterjd.aemadmin.command.crx.node.GetNodeCommand;
 import com.pieterjd.aemadmin.command.crx.node.ReorderNodeAfterCommand;
 import com.pieterjd.aemadmin.command.crx.property.GetPropertyCommand;
@@ -85,6 +88,23 @@ public class TestAEMAdmin {
         c.setConfigBuilder(configBuilder);
         c.execute();
         System.out.println("Check in crx if order has been updated");
+    }
+
+    @Test
+    public void testSearchPrincipalCommand(){
+        SearchPrincipalCommand spc = new SearchPrincipalCommand("everyone");
+        spc.execute();
+        try {
+            JSONObject json = spc.getHttpResponseAsJSON();
+            JSONArray authorizables = json.getJSONArray("authorizables");
+            Assert.assertEquals(1,authorizables.length());
+            JSONObject everyone = authorizables.getJSONObject(0);
+            Assert.assertEquals("everyone",everyone.getString("id"));
+            Assert.assertEquals("group",everyone.getString("type"));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
