@@ -7,5 +7,6 @@
 !**/resources/aemadmin.properties
 **/mvc*/*
 **/mivc*/*
+**/dca*/*
 **/kpngb*/*
 **/javadoc/*
