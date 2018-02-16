@@ -85,4 +85,17 @@ public class QueryCommand extends HttpRequestCommand {
         return queryResult;
     }
 
+    //som shortcut methods
+    public QueryCommand setHitLimit(int limit){
+        addCondition("p.limit",Integer.toString(limit));
+        return this;
+    }
+
+    public QueryCommand propertyExists(String prefix, String propertyName){
+        addCondition(prefix+"property",propertyName);
+        addCondition(prefix+"property.operation","exists");
+        addCondition(prefix+"property.value","true");
+        return this;
+    }
+
 }
