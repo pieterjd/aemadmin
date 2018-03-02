@@ -9,6 +9,7 @@ import com.pieterjd.aemadmin.command.aem.security.SearchPrincipalCommand;
 import com.pieterjd.aemadmin.command.crx.node.GetNodeCommand;
 import com.pieterjd.aemadmin.command.crx.node.ReorderNodeAfterCommand;
 import com.pieterjd.aemadmin.command.crx.property.GetPropertyCommand;
+import com.pieterjd.aemadmin.command.permissions.GetBoundPermissionCommand;
 import com.pieterjd.aemadmin.config.ConfigBuilder;
 import com.pieterjd.aemadmin.config.LocalAuthorConfigBuilder;
 import org.junit.Assert;
@@ -102,6 +103,30 @@ public class TestAEMAdmin {
             Assert.assertEquals("everyone",everyone.getString("id"));
             Assert.assertEquals("group",everyone.getString("type"));
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void getBoundPermissionTest(){
+        GetBoundPermissionCommand c =new GetBoundPermissionCommand("/apps");
+        c.execute();
+        try {
+            JSONObject response = c.getHttpResponseAsJSON();
+            Assert.assertNotNull(response.getJSONObject("sling-jcr-install"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void getEffectivePermissionTest(){
+        GetBoundPermissionCommand c =new GetBoundPermissionCommand("/apps");
+        c.execute();
+        try {
+            JSONObject response = c.getHttpResponseAsJSON();
+            Assert.assertNotNull(response.getJSONObject("sling-jcr-install"));
         } catch (IOException e) {
             e.printStackTrace();
         }
