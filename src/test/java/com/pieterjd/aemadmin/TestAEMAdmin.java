@@ -1,6 +1,7 @@
 package com.pieterjd.aemadmin;
 
 import com.github.tsohr.JSONArray;
+import com.github.tsohr.JSONException;
 import com.github.tsohr.JSONObject;
 import com.pieterjd.aemadmin.command.HttpRequestCommand;
 import com.pieterjd.aemadmin.command.LoginCommand;
@@ -9,7 +10,10 @@ import com.pieterjd.aemadmin.command.aem.security.SearchPrincipalCommand;
 import com.pieterjd.aemadmin.command.crx.node.GetNodeCommand;
 import com.pieterjd.aemadmin.command.crx.node.ReorderNodeAfterCommand;
 import com.pieterjd.aemadmin.command.crx.property.GetPropertyCommand;
+import com.pieterjd.aemadmin.command.permissions.AddPermissionCommand;
+import com.pieterjd.aemadmin.command.permissions.DeletePermissionCommand;
 import com.pieterjd.aemadmin.command.permissions.GetBoundPermissionCommand;
+import com.pieterjd.aemadmin.command.permissions.JCRPermission;
 import com.pieterjd.aemadmin.config.ConfigBuilder;
 import com.pieterjd.aemadmin.config.LocalAuthorConfigBuilder;
 import org.junit.Assert;
@@ -114,6 +118,7 @@ public class TestAEMAdmin {
         c.execute();
         try {
             JSONObject response = c.getHttpResponseAsJSON();
+            System.out.println(response.toString(1));
             Assert.assertNotNull(response.getJSONObject("sling-jcr-install"));
         } catch (IOException e) {
             e.printStackTrace();
@@ -127,6 +132,32 @@ public class TestAEMAdmin {
         try {
             JSONObject response = c.getHttpResponseAsJSON();
             Assert.assertNotNull(response.getJSONObject("sling-jcr-install"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //this test expect a JSONException when all runs correctly
+    @Test(expected = JSONException.class)
+    public void getAddAndRemovePermissionTest(){
+        AddPermissionCommand a =new AddPermissionCommand("/apps","everyone", JCRPermission.ALL);
+        a.execute();
+        GetBoundPermissionCommand g =new GetBoundPermissionCommand("/apps");
+        g.execute();
+        try {
+            JSONObject response = g.getHttpResponseAsJSON();
+            Assert.assertNotNull(response.getJSONObject("everyone"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        DeletePermissionCommand d = new DeletePermissionCommand("/apps","everyone");
+        d.execute();
+        g =new GetBoundPermissionCommand("/apps");
+        g.execute();
+        try {
+            JSONObject response = g.getHttpResponseAsJSON();
+            //getJSONObject call should throw an exception because this node is deleted
+            Assert.assertNull(response.getJSONObject("everyone"));
         } catch (IOException e) {
             e.printStackTrace();
         }
