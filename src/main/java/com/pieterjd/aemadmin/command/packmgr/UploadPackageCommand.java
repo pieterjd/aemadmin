@@ -2,6 +2,7 @@ package com.pieterjd.aemadmin.command.packmgr;
 
 import com.github.tsohr.JSONObject;
 import com.github.tsohr.XML;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.entity.ContentType;
@@ -76,5 +77,11 @@ public class UploadPackageCommand extends PackageMgrCommand {
     @Override
     public JSONObject getHttpResponseAsJSON() throws IOException {
         return XML.toJSONObject(getHttpResponseAsString());
+    }
+
+    @Override
+    protected ToStringBuilder getToStringBuilder() {
+        return super.getToStringBuilder()
+                .append("package",getFileName());
     }
 }
