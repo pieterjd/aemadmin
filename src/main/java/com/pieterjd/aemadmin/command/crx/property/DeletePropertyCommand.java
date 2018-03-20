@@ -15,8 +15,8 @@ import java.util.List;
  */
 public class DeletePropertyCommand extends PropertyCommand{
 
-    public DeletePropertyCommand(String path, String propertyName, String propertyValue) {
-        super(path, propertyName, propertyValue);
+    public DeletePropertyCommand(String path, String propertyName) {
+        super(path, propertyName, "");
     }
 
 
