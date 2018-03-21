@@ -28,7 +28,7 @@ public class LoginCommand extends HttpRequestCommand {
         HttpUriRequest result = null;
         try {
             result = RequestBuilder.post()
-                    .setUri(new URI(getBaseUrl() + ":" + getPort()))
+                    .setUri(new URI(buildUri()))
                     .addHeader("Authorization", "Basic " + Base64.encodeBase64String((getUserName() + ":" + getPassword()).getBytes()))
 
 

@@ -86,8 +86,15 @@ public abstract class HttpRequestCommand extends AbstractCommand {
     }
 
 
-    public int getPort() {
-        return Integer.parseInt(getProperties().getProperty("port"));
+    public Integer getPort() {
+
+        Integer result = null;
+        try{
+            result = Integer.parseInt(getProperties().getProperty("port"));
+        }catch (NumberFormatException nfe){
+
+        }
+        return result;
     }
 
 
@@ -117,6 +124,18 @@ public abstract class HttpRequestCommand extends AbstractCommand {
     //helper methods
 
     /**
+     * Returns the host string part. Format is either the baseUrl or baseUrl:port if portnumber is defined.
+     * @return Properly formatted host
+     */
+    protected String buildUri(){
+        String uri = getBaseUrl();
+        if(getPort() != null){
+            uri +=":"+getPort().toString();
+        }
+        return uri;
+    }
+
+    /**
      * Returns a Request builder already containing a post request and authentication header
      *
      * @param urlSuffix this will be appended to the baseUrl. Make sure it starts with "/"
@@ -126,7 +145,7 @@ public abstract class HttpRequestCommand extends AbstractCommand {
      */
     protected RequestBuilder getAuthenticatedPostRequestBuilder(String urlSuffix) throws URISyntaxException {
         return RequestBuilder.post()
-                .setUri(new URI(getBaseUrl() + ":" + getPort() + urlSuffix))
+                .setUri(new URI(buildUri() + urlSuffix))
                 .addHeader("Authorization", "Basic " + Base64.encodeBase64String((getUserName() + ":" + getPassword()
                 ).getBytes()));
 
@@ -142,7 +161,7 @@ public abstract class HttpRequestCommand extends AbstractCommand {
      */
     protected RequestBuilder getAuthenticatedGetRequestBuilder(String urlSuffix) throws URISyntaxException {
         return RequestBuilder.get()
-                .setUri(new URI(getBaseUrl() + ":" + getPort() + urlSuffix))
+                .setUri(new URI(buildUri() + urlSuffix))
                 .addHeader("Authorization", "Basic " + Base64.encodeBase64String((getUserName() + ":" + getPassword()
                 ).getBytes()));
 
@@ -158,7 +177,7 @@ public abstract class HttpRequestCommand extends AbstractCommand {
      */
     protected RequestBuilder getAuthenticatedPutRequestBuilder(String urlSuffix) throws URISyntaxException {
         return RequestBuilder.put()
-                .setUri(new URI(getBaseUrl() + ":" + getPort() + urlSuffix))
+                .setUri(new URI(buildUri() + urlSuffix))
                 .addHeader("Authorization", "Basic " + Base64.encodeBase64String((getUserName() + ":" + getPassword()
                 ).getBytes()));
 
@@ -174,7 +193,7 @@ public abstract class HttpRequestCommand extends AbstractCommand {
      */
     protected RequestBuilder getAuthenticatedDeleteRequestBuilder(String urlSuffix) throws URISyntaxException {
         return RequestBuilder.delete()
-                .setUri(new URI(getBaseUrl() + ":" + getPort() + urlSuffix))
+                .setUri(new URI(buildUri() + urlSuffix))
                 .addHeader("Authorization", "Basic " + Base64.encodeBase64String((getUserName() + ":" + getPassword()
                 ).getBytes()));
 
