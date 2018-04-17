@@ -12,9 +12,25 @@ public class CreatePageCommand extends CompositeCommand implements Cloneable{
     private String path,name,title,resourceType,template;
     private boolean deleteFirst;
 
+    /**
+     * @param path path where you want to create the page
+     * @param name name of the page node (node as in: repository node)
+     * @param title title of the page
+     * @param resourceType resourceType responsible for rendering
+     * @param template template for the new page
+     */
     public CreatePageCommand(String path, String name, String title, String resourceType, String template) {
         this(path,name,title,resourceType,template,false);
     }
+
+    /**
+     * @param path path where you want to create the page
+     * @param name name of the page node (node as in: repository node)
+     * @param title title of the page
+     * @param resourceType resourceType responsible for rendering
+     * @param template template for the new page
+     * @param deleteFirst perform a delete command before creating new page
+     */
     public CreatePageCommand(String path, String name, String title, String resourceType, String template,boolean deleteFirst) {
         setPath(path);
         setName(name);
