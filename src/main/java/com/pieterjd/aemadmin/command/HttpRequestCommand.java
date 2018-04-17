@@ -28,6 +28,7 @@ public abstract class HttpRequestCommand extends AbstractCommand {
 
     private CloseableHttpClient httpClient;
     private HttpResponse httpResponse;
+    private String httpResponseAsString;
     private Properties properties;
 
     private static Properties readDefaultProperties() {
@@ -110,8 +111,9 @@ public abstract class HttpRequestCommand extends AbstractCommand {
         return httpResponse;
     }
 
-    public void setHttpResponse(HttpResponse httpResponse) {
+    public void setHttpResponse(HttpResponse httpResponse) throws IOException {
         this.httpResponse = httpResponse;
+        this.httpResponseAsString = EntityUtils.toString(httpResponse.getEntity());
     }
 
     /**
@@ -225,7 +227,7 @@ public abstract class HttpRequestCommand extends AbstractCommand {
      * @throws IOException Something goes wrong with getting the response
      */
     public String getHttpResponseAsString() throws IOException {
-        return EntityUtils.toString(getHttpResponse().getEntity());
+        return httpResponseAsString;
     }
 
     /**
