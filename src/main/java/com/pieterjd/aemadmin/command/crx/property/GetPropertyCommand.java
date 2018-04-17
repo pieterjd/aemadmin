@@ -37,14 +37,13 @@ public class GetPropertyCommand extends PropertyCommand {
         return result;
     }
     public String getPropertyValue(){
+        String result = null;
         try {
-            return getHttpResponseAsJSON().getString(getPropertyName());
+            result = getHttpResponseAsJSON().getString(getPropertyName());
         } catch (Exception e) {
 
         }
-        finally {
-            return null;
-        }
+        return result;
     }
 
     public JSONArray getMultiPropertyValue(){
