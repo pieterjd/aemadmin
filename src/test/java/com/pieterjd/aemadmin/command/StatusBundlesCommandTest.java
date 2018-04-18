@@ -16,7 +16,7 @@ public class StatusBundlesCommandTest {
 
     @Test
     public void execute(){
-        HttpRequestCommand c = new StatusBundlesCommand();
+        StatusBundlesCommand c = new StatusBundlesCommand();
         c.execute();
         try {
             JSONObject json = c.getHttpResponseAsJSON();
@@ -25,6 +25,11 @@ public class StatusBundlesCommandTest {
             assertNotNull(json.getString("status"));
             assertNotNull(json.getJSONArray("s"));
             assertNotNull(json.getJSONArray("data"));
+            assertTrue(c.getTotalBundlesCount()>=0);
+            assertTrue(c.getActiveBundlesCount()>=0);
+            assertTrue(c.getActiveFragmentsCount()>=0);
+            assertTrue(c.getResolvedBundlesCount()>=0);
+            assertTrue(c.getTotalBundlesCount()==c.getActiveBundlesCount()+c.getActiveFragmentsCount()+c.getResolvedBundlesCount());
         } catch (IOException e) {
             e.printStackTrace();
         }
