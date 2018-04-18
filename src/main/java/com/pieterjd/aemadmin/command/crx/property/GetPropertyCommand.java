@@ -36,6 +36,11 @@ public class GetPropertyCommand extends PropertyCommand {
         }
         return result;
     }
+
+    /**
+     * Returns the value of the property. If the property does not exist, <code>null</code> is returned
+     * @return the value of the property or <code>null</code>
+     */
     public String getPropertyValue(){
         String result = null;
         try {
