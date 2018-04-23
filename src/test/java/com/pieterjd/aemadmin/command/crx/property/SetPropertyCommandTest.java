@@ -1,28 +1,45 @@
 package com.pieterjd.aemadmin.command.crx.property;
 
-import org.junit.Assert;
 import org.junit.Test;
+
+import java.io.IOException;
 
 import static org.junit.Assert.*;
 
 public class SetPropertyCommandTest {
+
+    public static final String PATH = "/tmp";
+    public static final String TYPED_PROPERTY_NAME = "dummyboolean";
+    public static final String UNTYPED_PROPERTY_NAME = "dummy";
+
+
+
     @Test
-    public void getRequest() throws Exception {
-        GetPropertyCommand gpc = new GetPropertyCommand("/tmp", "jcr:created");
+    public void testProperty(){
+        SetPropertyCommand spc = new SetPropertyCommand(PATH, UNTYPED_PROPERTY_NAME,"Some value 1234");
+        spc.execute();
+
+        GetPropertyCommand gpc = new GetPropertyCommand(PATH,UNTYPED_PROPERTY_NAME);
         gpc.execute();
-        assertFalse(gpc.isMultiValue());
+        try {
+            gpc.getHttpResponseAsJSON().getString(UNTYPED_PROPERTY_NAME);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
-    public void getRequestMultiValue() throws Exception {
-        GetPropertyCommand gpc = new GetPropertyCommand("/etc/clientlibs/rep:policy/allow", "rep:privileges");
+    public void testExplictlyTypedProperty(){
+        SetPropertyCommand spc = new SetPropertyCommand(PATH, TYPED_PROPERTY_NAME,"True","Boolean");
+        spc.execute();
 
+        GetPropertyCommand gpc = new GetPropertyCommand(PATH,TYPED_PROPERTY_NAME);
         gpc.execute();
-        Assert.assertTrue(gpc.isMultiValue());
-        gpc = new GetPropertyCommand("/etc/clientlibs/rep:policy/allow", "jcr:primaryType");
-
-        gpc.execute();
-        Assert.assertFalse(gpc.isMultiValue());
+        try {
+            gpc.getHttpResponseAsJSON().getBoolean(TYPED_PROPERTY_NAME);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

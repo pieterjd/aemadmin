@@ -16,13 +16,26 @@ import java.util.List;
  */
 public class SetPropertyCommand extends PropertyCommand {
 
+    private String propertyType;
+
     public SetPropertyCommand(String path, String propertyName,String propertyValue) {
-        super(path, propertyName,propertyValue);
+        this(path, propertyName,propertyValue,null);
 
     }
 
+    public SetPropertyCommand(String path, String propertyName,String propertyValue,String propertyType) {
+        super(path, propertyName,propertyValue);
+        setPropertyType(propertyType);
+    }
 
 
+    public String getPropertyType() {
+        return propertyType;
+    }
+
+    public void setPropertyType(String propertyType) {
+        this.propertyType = propertyType;
+    }
 
     @Override
     protected ToStringBuilder getToStringBuilder() {
@@ -36,6 +49,9 @@ public class SetPropertyCommand extends PropertyCommand {
     public HttpUriRequest getRequest() throws URISyntaxException {
         List<NameValuePair> params = new ArrayList<>();
         params.add(new BasicNameValuePair(getPropertyName(),getPropertyValue()));
+        if(getPropertyType() != null){
+            params.add(new BasicNameValuePair(getPropertyName()+"@TypeHint",getPropertyType()));
+        }
         HttpUriRequest result = null;
         try {
             result =  getAuthenticatedPostRequestBuilder(getPath())
