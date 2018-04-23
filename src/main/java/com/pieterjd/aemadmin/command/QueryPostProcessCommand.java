@@ -4,6 +4,7 @@ package com.pieterjd.aemadmin.command;
 import com.github.tsohr.JSONArray;
 import com.github.tsohr.JSONObject;
 import com.pieterjd.aemadmin.command.crx.property.SetPropertyCommand;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * A PostProcess command specific for queries. Usually you want to process the results
@@ -35,5 +36,10 @@ public abstract class QueryPostProcessCommand<T extends QueryCommand> extends Po
            postProcessOneResult(hits.getJSONObject(i));
         }
 
+    }
+
+    @Override
+    protected ToStringBuilder getToStringBuilder() {
+        return super.getToStringBuilder().append("conditions",getCommand().getConditions());
     }
 }

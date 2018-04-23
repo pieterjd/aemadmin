@@ -15,6 +15,9 @@ import java.util.Map;
  */
 public class QueryCommand extends HttpRequestCommand {
     private Map<String,String> conditions;
+
+
+
     private JSONObject queryResult;
 
     public QueryCommand() {
@@ -36,13 +39,18 @@ public class QueryCommand extends HttpRequestCommand {
     public String put(String key, String value) {
         return conditions.put(key, value);
     }
-    public String addCondition(String key,String value){
-        return put(key,value);
+    public QueryCommand addCondition(String key,String value){
+         put(key,value);
+         return this;
     }
+
     public String remove(Object key) {
         return conditions.remove(key);
     }
 
+    public Map<String, String> getConditions() {
+        return conditions;
+    }
     private String getQueryString(){
         StringBuilder sb = new StringBuilder();
         for(String key:conditions.keySet()){
@@ -96,6 +104,22 @@ public class QueryCommand extends HttpRequestCommand {
         addCondition(prefix+"property.operation","exists");
         addCondition(prefix+"property.value","true");
         return this;
+    }
+
+    public QueryCommand fullHit(){
+        return addCondition("p.hits","full");
+    }
+
+    public int getResults(){
+        return getQueryResult().getInt("results");
+    }
+
+    public int getTotal(){
+        return getQueryResult().getInt("total");
+    }
+
+    public boolean hasMore(){
+        return getQueryResult().getBoolean("more");
     }
 
 }
