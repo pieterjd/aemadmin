@@ -27,3 +27,22 @@ In some cases you need to process the outcome of a command. That is exactly what
 the ``PostProcessCommand`` class tackles.
 
 A specific PostProcessCommand is already implemented for handling query results, ``QueryPostProcessCommand``.
+
+## Node properties
+When running your command, you sometimes need to provide information on the node you want to run the command on. If you have a main method, you can run this with the
+``-DpropertiesFile=<path to a properties file>``
+
+Required properties in this file are:
+* userName (required)
+* password (required)
+* baseUrl (required)
+* port (optional)
+
+The properties file for a local author node looks like:
+````
+userName=admin
+password=admin
+baseUrl=http://localhost
+port=4502
+````
+

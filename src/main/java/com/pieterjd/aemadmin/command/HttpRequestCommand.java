@@ -12,6 +12,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,12 +32,29 @@ public abstract class HttpRequestCommand extends AbstractCommand {
     private String httpResponseAsString;
     private Properties properties;
 
+    public static final String CMDLINE_PROPERTY_FILE = "propertiesFile";
+
+    /**
+     * If the propertiesFile cmd line property is set, read that file; otherwise use the local author instance
+     * @return The properties of the node to connect to
+     */
     private static Properties readDefaultProperties() {
         Properties result = new Properties();
-        try (InputStream inputStream = ClassLoader.getSystemResourceAsStream("aemadmin.properties")) {
-            result.load(inputStream);
-        } catch (IOException e) {
-            result = new LocalAuthorConfigBuilder().build();
+
+        if(System.getProperty(CMDLINE_PROPERTY_FILE) != null){
+            try (InputStream inputStream = new FileInputStream(System.getProperty("propertiesFile"))) {
+                result.load(inputStream);
+            } catch (IOException e) {
+                System.out.println("Cannot read cmdline provided properties file");
+                result = new LocalAuthorConfigBuilder().build();
+            }
+        }
+        else {
+            try (InputStream inputStream = ClassLoader.getSystemResourceAsStream("aemadmin.properties")) {
+                result.load(inputStream);
+            } catch (IOException e) {
+                result = new LocalAuthorConfigBuilder().build();
+            }
         }
         return result;
     }
