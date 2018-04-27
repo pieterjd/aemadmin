@@ -45,4 +45,9 @@ password=admin
 baseUrl=http://localhost
 port=4502
 ````
+## Creating a standalone uberjar
+If you want to run your command on a machine and do not want to download the whole codebase,
+you can create a standalone uberjar.
+
+Just make sure to update the mainClass value in the maven assembly plugin section in the``pom.xml`` file
 
