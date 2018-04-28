@@ -49,5 +49,8 @@ port=4502
 If you want to run your command on a machine and do not want to download the whole codebase,
 you can create a standalone uberjar.
 
-Just make sure to update the mainClass value in the maven assembly plugin section in the``pom.xml`` file
+Just make sure to update the mainClass value in the maven assembly plugin section in the ``pom.xml`` file.
+
+By default the name is just a concatenation of the artifactid, version and ``jar-with-dependencies``. If you want
+to replace the first2 parts, update the ``uberjar.prefix`` property in the pom file.
 
