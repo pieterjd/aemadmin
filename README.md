@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/pieterjd/aemadmin.svg?branch=master)](https://travis-ci.org/pieterjd/aemadmin)
+
 # AEMAdmin
 
 AEMAdmin is tool built to automate boring JCR/CRX.DE operations, such as delete a node, updating a property of a node, ...
