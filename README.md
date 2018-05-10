@@ -1,5 +1,17 @@
 [![Build Status](https://travis-ci.org/pieterjd/aemadmin.svg?branch=master)](https://travis-ci.org/pieterjd/aemadmin)
 
+- [AEMAdmin](#aemadmin)
+  * [Node commands](#node-commands)
+  * [Properties commands](#properties-commands)
+  * [CompositeCommand](#compositecommand)
+  * [PostProcessCommand](#postprocesscommand)
+  * [Instance properties](#instance-properties)
+  * [Creating a standalone uberjar](#creating-a-standalone-uberjar)
+- [Talks about AEMAdmin](#talks-about-aemadmin)
+  * [AEM meetup hosted by Emakina Amsterdam](#aem-meetup-hosted-by-emakina-amsterdam)
+- [Licensing & Attribution](#licensing---attribution)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 # AEMAdmin
 
 AEMAdmin is tool built to automate boring JCR/CRX.DE operations, such as delete a node, updating a property of a node, ...
@@ -30,8 +42,8 @@ the ``PostProcessCommand`` class tackles.
 
 A specific PostProcessCommand is already implemented for handling query results, ``QueryPostProcessCommand``.
 
-## Node properties
-When running your command, you sometimes need to provide information on the node you want to run the command on. If you have a main method, you can run this with the
+## Instance properties
+When running your command, you sometimes need to provide information on the instance you want to run the command on. If you have a main method, you can run this with the
 ``-DpropertiesFile=<path to a properties file>``
 
 Required properties in this file are:
@@ -56,3 +68,13 @@ Just make sure to update the mainClass value in the maven assembly plugin sectio
 By default the name is just a concatenation of the artifactid, version and ``jar-with-dependencies``. If you want
 to replace the first2 parts, update the ``uberjar.prefix`` property in the pom file.
 
+# Talks about AEMAdmin
+## AEM meetup hosted by Emakina Amsterdam
+My collegue Joeri asked me to give a last-minute presentation on "that tool you're working on". More information
+on the [meetup page itself](https://www.meetup.com/AEM-Developer-Meetup/events/248690741/).
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/xk2p9CpUsMz98C" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/m9600174/talk-aem-meetup-hosted-by-emakina-amsterdam" title="Talk @ AEM meetup hosted by Emakina Amsterdam" target="_blank">Talk @ AEM meetup hosted by Emakina Amsterdam</a> </strong> from <strong><a href="https://www.slideshare.net/m9600174" target="_blank">Pieter-Jan Drouillon</a></strong> </div>
+# Licensing & Attribution
+This software is available for free and can be modified in any way. However, when you do so, please add the following small
+text to your webpage, blogpost, paper, ...
+
+> Original idea and implementation by Pieter-Jan Drouillon
