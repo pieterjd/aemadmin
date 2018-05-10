@@ -72,6 +72,7 @@ to replace the first2 parts, update the ``uberjar.prefix`` property in the pom f
 ## AEM meetup hosted by Emakina Amsterdam
 My collegue Joeri asked me to give a last-minute presentation on "that tool you're working on". More information
 on the [meetup page itself](https://www.meetup.com/AEM-Developer-Meetup/events/248690741/).
+
 <strong> <a href="//www.slideshare.net/m9600174/talk-aem-meetup-hosted-by-emakina-amsterdam" title="Talk @ AEM meetup hosted by Emakina Amsterdam" target="_blank">Talk @ AEM meetup hosted by Emakina Amsterdam</a> </strong> from <strong><a href="https://www.slideshare.net/m9600174" target="_blank">Pieter-Jan Drouillon</a></strong>
 
 # Licensing & Attribution
