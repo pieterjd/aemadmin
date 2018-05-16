@@ -3,6 +3,7 @@ package com.pieterjd.aemadmin.command;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -36,6 +37,13 @@ public class CompositeCommand extends AbstractCommand {
         return commands.get(index);
     }
 
+    public void clear() {
+        commands.clear();
+    }
+
+    public boolean addAll(Collection<? extends AbstractCommand> c) {
+        return commands.addAll(c);
+    }
 
     public void execute() {
 
