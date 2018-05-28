@@ -278,6 +278,7 @@ public abstract class HttpRequestCommand extends AbstractCommand {
     @Override
     protected ToStringBuilder getToStringBuilder() {
         ToStringBuilder result = super.getToStringBuilder();
+        result.append("baseUrl",getBaseUrl());
         if (getHttpResponse() != null) {
             result = result.append("httpResponseCode", getHttpResponse().getStatusLine().getStatusCode());
         }
