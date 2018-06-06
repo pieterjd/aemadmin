@@ -46,7 +46,7 @@ public class CompositeCommand extends AbstractCommand {
     }
 
     public void execute() {
-
+        setSuccess(true);
         for(int i = 0; i<size() ; i++){
 
             AbstractCommand current = get(i);
