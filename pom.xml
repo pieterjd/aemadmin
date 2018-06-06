@@ -4,9 +4,7 @@
   <groupId>com.pieterjd.poc</groupId>
   <artifactId>AEMAdmin</artifactId>
   <packaging>jar</packaging>
-    <properties>
-        <uberjar.prefix>${artifactId}-${version}</uberjar.prefix>
-    </properties>
+
   <version>0.1-SNAPSHOT</version>
     <build>
         <plugins>
@@ -18,36 +16,6 @@
                     <source>1.7</source>
                     <target>1.7</target>
                 </configuration>
-            </plugin>
-            <!-- Maven Assembly Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.4.1</version>
-                <configuration>
-                    <!-- get all project dependencies -->
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                    <finalName>${uberjar.prefix}</finalName>
-                    <!-- MainClass in mainfest make a executable jar -->
-                    <archive>
-                        <manifest>
-                            <mainClass>updateThis.main</mainClass>
-                        </manifest>
-                    </archive>
-
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <!-- bind to the packaging phase -->
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>
@@ -104,14 +72,5 @@
           <version>2.13.0</version>
           <scope>test</scope>
       </dependency>
-      <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-      <dependency>
-          <groupId>org.projectlombok</groupId>
-          <artifactId>lombok</artifactId>
-          <version>1.16.20</version>
-          <scope>provided</scope>
-      </dependency>
-
-
   </dependencies>
 </project>
