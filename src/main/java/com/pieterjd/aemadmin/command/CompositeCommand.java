@@ -52,6 +52,7 @@ public class CompositeCommand extends AbstractCommand {
             AbstractCommand current = get(i);
             System.out.println("starting "+ current.getClass().getSimpleName());
             current.execute();
+            setSuccess(isSuccess() && current.isSuccess());
             System.out.println(current);
             AbstractCommand previous = current;
             if(i+1<size()){
