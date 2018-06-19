@@ -5,7 +5,7 @@ pipeline {
             agent any
             steps {
                 echo 'Hello, Maven'
-                sh 'mvn --version'
+                sh 'mvn clean install'
             }
         }
         stage('Example Test') {
