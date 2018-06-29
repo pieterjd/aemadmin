@@ -18,6 +18,15 @@
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>aemadmin.properties</include>
+                    <include>localhost.properties</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
   <url>http://maven.apache.org</url>
