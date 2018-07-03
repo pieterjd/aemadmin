@@ -1,6 +1,7 @@
 package com.pieterjd.aemadmin.command.jcr.node;
 
 import com.pieterjd.aemadmin.command.jcr.JcrCommand;
+import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.HttpUriRequest;
 
 import java.net.URISyntaxException;
@@ -23,7 +24,7 @@ public class DeleteNodeCommand extends JcrCommand {
         }
         finally{
             int statusCode = getHttpResponse().getStatusLine().getStatusCode();
-            setSuccess(200 <= statusCode && statusCode < 300);
+            setSuccess((HttpStatus.SC_ACCEPTED <= statusCode && statusCode < HttpStatus.SC_MULTIPLE_CHOICES) || statusCode == HttpStatus.SC_NOT_FOUND);
         }
     }
 
