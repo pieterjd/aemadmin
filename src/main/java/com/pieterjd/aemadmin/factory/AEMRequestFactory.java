@@ -29,7 +29,7 @@ public class AEMRequestFactory extends AbstractRequestFactory {
 
     @Override
     public HttpUriRequest getDeleteNodeHttpRequest(String path) throws URISyntaxException {
-        return getAuthenticatedDeleteRequestBuilder("/jcr/server/jcr.default/jcr:root"+path).build();
+        return getAuthenticatedDeleteRequestBuilder(path).build();
     }
 
     @Override
