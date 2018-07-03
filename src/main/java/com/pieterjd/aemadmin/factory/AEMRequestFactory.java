@@ -34,7 +34,7 @@ public class AEMRequestFactory extends AbstractRequestFactory {
 
     @Override
     public HttpUriRequest getGetNodeHttpRequest(String path,Integer depth) throws URISyntaxException {
-        String uri = "/jcr/server/jcr.default/jcr:root"+path+".";
+        String uri = path+".";
         if(depth != null){
             uri +=depth+".";
         }
