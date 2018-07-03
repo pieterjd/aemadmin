@@ -21,6 +21,9 @@ public class DeleteNodeCommandTest {
         DeleteNodeCommand dnc = new DeleteNodeCommand(path);
         dnc.execute();
         assertTrue(dnc.isSuccess());
+        GetNodeCommand gnc = new GetNodeCommand(path);
+        gnc.execute();
+        assertFalse(path+ " should not exist after running this test",gnc.isSuccess());
     }
 
 }
