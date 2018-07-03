@@ -56,18 +56,6 @@ public class TestAEMAdmin {
         }
     }
 
-    @Test
-    public void testGetNodeCommand() {
-        HttpRequestCommand c = new GetNodeCommand("/content");
-        c.setConfigBuilder(configBuilder);
-        c.execute();
-        Assert.assertTrue(c.isSuccess());
-        c = new GetNodeCommand("/contentbla");
-        c.setConfigBuilder(configBuilder);
-        c.execute();
-        Assert.assertFalse(c.isSuccess());
-
-    }
 
     @Test
     public void testGetPropertyCommand() {

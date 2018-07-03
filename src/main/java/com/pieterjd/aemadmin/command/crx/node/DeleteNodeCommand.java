@@ -13,7 +13,19 @@ public class DeleteNodeCommand extends CrxCommand {
         super(path);
     }
 
+    @Override
+    public void execute(){
+        try{
+            super.execute();
+        }
+        catch(Exception e){
 
+        }
+        finally{
+            int statusCode = getHttpResponse().getStatusLine().getStatusCode();
+            setSuccess(200 <= statusCode && statusCode < 300);
+        }
+    }
 
     public HttpUriRequest getRequest() throws URISyntaxException {
         return getAuthenticatedDeleteRequestBuilder("/crx/server/crx.default/jcr:root"+getPath()).build();
