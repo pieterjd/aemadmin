@@ -47,19 +47,6 @@ public class SetPropertyCommand extends PropertyCommand {
 
     @Override
     public HttpUriRequest getRequest() throws URISyntaxException {
-        List<NameValuePair> params = new ArrayList<>();
-        params.add(new BasicNameValuePair(getPropertyName(),getPropertyValue()));
-        if(getPropertyType() != null){
-            params.add(new BasicNameValuePair(getPropertyName()+"@TypeHint",getPropertyType()));
-        }
-        HttpUriRequest result = null;
-        try {
-            result =  getAuthenticatedPostRequestBuilder(getPath())
-                    .setEntity(new UrlEncodedFormEntity(params))
-                    .build();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return result;
+        return getHttpRequestFactory().getSetPropertyHttpRequest(getPath(),getPropertyName(),getPropertyValue(),getPropertyValue());
     }
 }

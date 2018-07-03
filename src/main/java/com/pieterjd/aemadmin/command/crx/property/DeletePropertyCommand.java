@@ -23,16 +23,6 @@ public class DeletePropertyCommand extends PropertyCommand{
 
     @Override
     public HttpUriRequest getRequest() throws URISyntaxException {
-        List<NameValuePair> params = new ArrayList<>();
-        params.add(new BasicNameValuePair(getPropertyName()+"@Delete",getPropertyValue()));
-        HttpUriRequest result = null;
-        try {
-            result =  getAuthenticatedPostRequestBuilder(getPath())
-                    .setEntity(new UrlEncodedFormEntity(params))
-                    .build();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return result;
+        return getHttpRequestFactory().getDeletePropertyHttpRequest(getPath(),getPropertyName());
     }
 }

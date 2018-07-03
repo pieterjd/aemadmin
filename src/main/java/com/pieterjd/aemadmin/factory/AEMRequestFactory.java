@@ -44,7 +44,7 @@ public class AEMRequestFactory extends AbstractRequestFactory {
     }
 
     @Override
-    public HttpRequest getSetPropertyHttpRequest(String path, String propertyName, String propertyValue, String propertyType) throws URISyntaxException {
+    public HttpUriRequest getSetPropertyHttpRequest(String path, String propertyName, String propertyValue, String propertyType) throws URISyntaxException {
         List<NameValuePair> params = new ArrayList<>();
         params.add(new BasicNameValuePair(propertyName, propertyValue));
         if(propertyType != null){
@@ -62,7 +62,7 @@ public class AEMRequestFactory extends AbstractRequestFactory {
     }
 
     @Override
-    public HttpRequest getDeletePropertyHttpRequest(String path, String propertyName) throws URISyntaxException {
+    public HttpUriRequest getDeletePropertyHttpRequest(String path, String propertyName) throws URISyntaxException {
         List<NameValuePair> params = new ArrayList<>();
         params.add(new BasicNameValuePair(propertyName +"@Delete","some random value"));
         HttpUriRequest result = null;
@@ -77,7 +77,7 @@ public class AEMRequestFactory extends AbstractRequestFactory {
     }
 
     @Override
-    public HttpRequest getGetPropertyHttpRequest(String path, String propertyName) throws URISyntaxException {
+    public HttpUriRequest getGetPropertyHttpRequest(String path, String propertyName) throws URISyntaxException {
         return getAuthenticatedGetRequestBuilder(path+".json").build();
     }
 }

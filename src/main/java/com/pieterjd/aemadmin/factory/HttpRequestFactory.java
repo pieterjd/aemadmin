@@ -14,9 +14,9 @@ public interface HttpRequestFactory {
     public HttpUriRequest getGetNodeHttpRequest(String path,Integer depth) throws URISyntaxException;
 
     //properties http request
-    public HttpRequest getSetPropertyHttpRequest(String path, String propertyName, String propertyValue, String propertyType) throws URISyntaxException;
-    public HttpRequest getDeletePropertyHttpRequest(String path,String propertyName) throws URISyntaxException;
-    public HttpRequest getGetPropertyHttpRequest(String path,String propertyName) throws URISyntaxException;
+    public HttpUriRequest getSetPropertyHttpRequest(String path, String propertyName, String propertyValue, String propertyType) throws URISyntaxException;
+    public HttpUriRequest getDeletePropertyHttpRequest(String path, String propertyName) throws URISyntaxException;
+    public HttpUriRequest getGetPropertyHttpRequest(String path,String propertyName) throws URISyntaxException;
 
 
     public Properties getProperties();
