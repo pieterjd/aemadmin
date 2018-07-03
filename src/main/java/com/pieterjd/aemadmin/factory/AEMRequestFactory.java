@@ -37,9 +37,9 @@ public class AEMRequestFactory extends AbstractRequestFactory {
     public HttpUriRequest getGetNodeHttpRequest(String path,Integer depth) throws URISyntaxException {
         String uri = "/crx/server/crx.default/jcr:root"+path+".";
         if(depth != null){
-            path +=depth+".";
+            uri +=depth+".";
         }
-        path +="json";
+        uri +="json";
         return getAuthenticatedGetRequestBuilder(uri).build();
     }
 

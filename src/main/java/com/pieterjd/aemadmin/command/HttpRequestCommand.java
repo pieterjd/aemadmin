@@ -52,8 +52,8 @@ public abstract class HttpRequestCommand extends AbstractCommand {
      * Creates HttpRequestCommand using local author
      */
     public HttpRequestCommand() {
-
-       setProperties(readDefaultProperties().getProperties());
+        setHttpRequestFactory(readDefaultProperties());
+        setProperties(getHttpRequestFactory().getProperties());
         setHttpClient(HttpClients.createDefault());
     }
 
@@ -121,6 +121,14 @@ public abstract class HttpRequestCommand extends AbstractCommand {
     public void setHttpResponse(HttpResponse httpResponse) throws IOException {
         this.httpResponse = httpResponse;
         this.httpResponseAsString = EntityUtils.toString(httpResponse.getEntity());
+    }
+
+    public void setHttpRequestFactory(HttpRequestFactory httpRequestFactory) {
+        this.httpRequestFactory = httpRequestFactory;
+    }
+
+    public HttpRequestFactory getHttpRequestFactory() {
+        return httpRequestFactory;
     }
 
     /**

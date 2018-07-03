@@ -28,6 +28,6 @@ public class DeleteNodeCommand extends CrxCommand {
     }
 
     public HttpUriRequest getRequest() throws URISyntaxException {
-        return getAuthenticatedDeleteRequestBuilder("/crx/server/crx.default/jcr:root"+getPath()).build();
+        return getHttpRequestFactory().getDeleteNodeHttpRequest(getPath());
     }
 }

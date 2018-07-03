@@ -29,11 +29,6 @@ public class GetNodeCommand extends CrxCommand {
     }
 
     public HttpUriRequest getRequest() throws URISyntaxException {
-        String path = "/crx/server/crx.default/jcr:root"+getPath()+".";
-        if(getDepth() != null){
-            path +=getDepth()+".";
-        }
-        path +="json";
-        return getAuthenticatedGetRequestBuilder(path).build();
+        return getHttpRequestFactory().getGetNodeHttpRequest(getPath(),getDepth());
     }
 }

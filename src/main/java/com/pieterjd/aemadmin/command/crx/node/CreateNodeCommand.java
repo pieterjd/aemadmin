@@ -33,17 +33,6 @@ public class CreateNodeCommand extends CrxCommand {
 
     @Override
     public HttpUriRequest getRequest() throws URISyntaxException {
-        HttpUriRequest result = null;
-        List<NameValuePair> params = new ArrayList<>();
-        params.add(new BasicNameValuePair("jcr:primaryType",getPrimaryType()));
-
-        try {
-            result = getAuthenticatedPostRequestBuilder(getPath())
-                    .setEntity(new UrlEncodedFormEntity(params))
-                    .build();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return result;
+        return getHttpRequestFactory().getCreateNodeHttpRequest(getPath(),getPrimaryType());
     }
 }
