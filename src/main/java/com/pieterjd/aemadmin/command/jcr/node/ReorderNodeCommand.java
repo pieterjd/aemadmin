@@ -1,6 +1,6 @@
-package com.pieterjd.aemadmin.command.crx.node;
+package com.pieterjd.aemadmin.command.jcr.node;
 
-import com.pieterjd.aemadmin.command.crx.CrxCommand;
+import com.pieterjd.aemadmin.command.jcr.JcrCommand;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -12,10 +12,10 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class ReorderNodeCommand extends CrxCommand {
+public abstract class ReorderNodeCommand extends JcrCommand {
     private String siblingNodename;
     /**
-     * Path of the crx node. this path should start with a "/"
+     * Path of the jcr node. this path should start with a "/"
      *
      * @param path the path to the node that will be moved
      * @param siblingNodename the node after/before/... which the node at path will be moved

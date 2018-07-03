@@ -1,12 +1,8 @@
-package com.pieterjd.aemadmin.command.crx.property;
+package com.pieterjd.aemadmin.command.jcr.property;
 
-import org.apache.http.NameValuePair;
 import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.message.BasicNameValuePair;
 
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Add a value to a multivalue property.

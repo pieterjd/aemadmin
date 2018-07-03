@@ -1,10 +1,9 @@
-package com.pieterjd.aemadmin.command.crx;
+package com.pieterjd.aemadmin.command.jcr;
 
-import com.pieterjd.aemadmin.command.crx.node.GetNodeCommand;
+import com.pieterjd.aemadmin.command.aem.EnableCrxCommand;
+import com.pieterjd.aemadmin.command.jcr.node.GetNodeCommand;
 import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class EnableCrxCommandTest {
     @Test

@@ -1,7 +1,7 @@
 package com.pieterjd.aemadmin.command.aem.replication;
 
-import com.pieterjd.aemadmin.command.crx.node.DeleteNodeCommand;
-import com.pieterjd.aemadmin.command.crx.property.GetPropertyCommand;
+import com.pieterjd.aemadmin.command.jcr.node.DeleteNodeCommand;
+import com.pieterjd.aemadmin.command.jcr.property.GetPropertyCommand;
 import com.pieterjd.aemadmin.config.LocalPublishConfigBuilder;
 import org.junit.Before;
 import org.junit.Test;

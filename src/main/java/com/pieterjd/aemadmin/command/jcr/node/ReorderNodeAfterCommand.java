@@ -1,16 +1,6 @@
-package com.pieterjd.aemadmin.command.crx.node;
+package com.pieterjd.aemadmin.command.jcr.node;
 
-import com.pieterjd.aemadmin.command.crx.CrxCommand;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.message.BasicNameValuePair;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by pdrouill on 11/07/2017.
@@ -23,7 +13,7 @@ public class ReorderNodeAfterCommand extends ReorderNodeCommand{
 
 
     /**
-     * Path of the crx node. this path should start with a "/"
+     * Path of the jcr node. this path should start with a "/"
      *
      * The node at path will come after siblingnode.
      *

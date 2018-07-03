@@ -1,6 +1,6 @@
-package com.pieterjd.aemadmin.command.crx.node;
+package com.pieterjd.aemadmin.command.jcr.node;
 
-import com.pieterjd.aemadmin.command.crx.CrxCommand;
+import com.pieterjd.aemadmin.command.jcr.JcrCommand;
 import org.apache.http.client.methods.HttpUriRequest;
 
 import java.net.URISyntaxException;
@@ -8,7 +8,7 @@ import java.net.URISyntaxException;
 /**
  * Returns a node up to a certain depth in JSON format.
  */
-public class GetNodeCommand extends CrxCommand {
+public class GetNodeCommand extends JcrCommand {
     private Integer depth;
     public GetNodeCommand(String path){
         this(path,1);

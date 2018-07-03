@@ -1,6 +1,5 @@
 package com.pieterjd.aemadmin.factory;
 
-import org.apache.http.HttpRequest;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpUriRequest;
@@ -30,12 +29,12 @@ public class AEMRequestFactory extends AbstractRequestFactory {
 
     @Override
     public HttpUriRequest getDeleteNodeHttpRequest(String path) throws URISyntaxException {
-        return getAuthenticatedDeleteRequestBuilder("/crx/server/crx.default/jcr:root"+path).build();
+        return getAuthenticatedDeleteRequestBuilder("/jcr/server/jcr.default/jcr:root"+path).build();
     }
 
     @Override
     public HttpUriRequest getGetNodeHttpRequest(String path,Integer depth) throws URISyntaxException {
-        String uri = "/crx/server/crx.default/jcr:root"+path+".";
+        String uri = "/jcr/server/jcr.default/jcr:root"+path+".";
         if(depth != null){
             uri +=depth+".";
         }

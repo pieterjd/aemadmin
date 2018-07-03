@@ -68,7 +68,7 @@ public class UploadPackageCommand extends PackageMgrCommand {
                 .addBinaryBody("file",new File(getFileName()), ContentType.APPLICATION_OCTET_STREAM,"filename")
                 .build();
 
-        HttpUriRequest result =  getAuthenticatedPostRequestBuilder("/crx/packmgr/service.jsp")
+        HttpUriRequest result =  getAuthenticatedPostRequestBuilder("/jcr/packmgr/service.jsp")
                     .setEntity(entity)
                     .build();
 

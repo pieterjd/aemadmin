@@ -1,22 +1,12 @@
-package com.pieterjd.aemadmin.command.crx.property;
+package com.pieterjd.aemadmin.command.jcr.property;
 
-import com.pieterjd.aemadmin.command.crx.CrxCommand;
+import com.pieterjd.aemadmin.command.jcr.JcrCommand;
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.client.methods.RequestBuilder;
-import org.apache.http.message.BasicNameValuePair;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Do something with a property of a crx node.
+ * Do something with a property of a jcr node.
  */
-public abstract class PropertyCommand extends CrxCommand{
+public abstract class PropertyCommand extends JcrCommand {
 
     private String propertyName;
     private String propertyValue;

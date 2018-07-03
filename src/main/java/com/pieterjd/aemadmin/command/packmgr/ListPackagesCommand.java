@@ -17,7 +17,7 @@ public class ListPackagesCommand extends PackageMgrCommand {
 
     @Override
     public HttpUriRequest getRequest() throws URISyntaxException {
-        return getAuthenticatedGetRequestBuilder("/crx/packmgr/service.jsp?cmd=ls").build();
+        return getAuthenticatedGetRequestBuilder("/jcr/packmgr/service.jsp?cmd=ls").build();
     }
 
     @Override

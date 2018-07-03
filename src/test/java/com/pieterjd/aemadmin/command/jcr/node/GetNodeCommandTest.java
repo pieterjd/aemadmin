@@ -1,10 +1,8 @@
-package com.pieterjd.aemadmin.command.crx.node;
+package com.pieterjd.aemadmin.command.jcr.node;
 
 import com.pieterjd.aemadmin.command.HttpRequestCommand;
 import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 public class GetNodeCommandTest {
     @Test

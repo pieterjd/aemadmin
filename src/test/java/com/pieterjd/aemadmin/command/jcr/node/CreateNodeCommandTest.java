@@ -1,7 +1,6 @@
-package com.pieterjd.aemadmin.command.crx.node;
+package com.pieterjd.aemadmin.command.jcr.node;
 
-import com.pieterjd.aemadmin.command.crx.property.GetPropertyCommand;
-import org.junit.Assert;
+import com.pieterjd.aemadmin.command.jcr.property.GetPropertyCommand;
 import org.junit.Before;
 import org.junit.Test;
 

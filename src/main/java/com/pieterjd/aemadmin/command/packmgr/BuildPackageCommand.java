@@ -17,6 +17,6 @@ public class BuildPackageCommand extends PackageMgrCommand {
 
     @Override
     public HttpUriRequest getRequest() throws URISyntaxException {
-        return getAuthenticatedPostRequestBuilder("/crx/packmgr/service/.json/etc/packages/"+getPackageName()+"?cmd=build").build();
+        return getAuthenticatedPostRequestBuilder("/jcr/packmgr/service/.json/etc/packages/"+getPackageName()+"?cmd=build").build();
     }
 }

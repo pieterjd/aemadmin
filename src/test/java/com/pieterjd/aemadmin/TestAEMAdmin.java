@@ -7,9 +7,8 @@ import com.pieterjd.aemadmin.command.HttpRequestCommand;
 import com.pieterjd.aemadmin.command.LoginCommand;
 import com.pieterjd.aemadmin.command.StatusBundlesCommand;
 import com.pieterjd.aemadmin.command.aem.security.SearchPrincipalCommand;
-import com.pieterjd.aemadmin.command.crx.node.GetNodeCommand;
-import com.pieterjd.aemadmin.command.crx.node.ReorderNodeAfterCommand;
-import com.pieterjd.aemadmin.command.crx.property.GetPropertyCommand;
+import com.pieterjd.aemadmin.command.jcr.node.ReorderNodeAfterCommand;
+import com.pieterjd.aemadmin.command.jcr.property.GetPropertyCommand;
 import com.pieterjd.aemadmin.command.permissions.AddPermissionCommand;
 import com.pieterjd.aemadmin.command.permissions.DeletePermissionCommand;
 import com.pieterjd.aemadmin.command.permissions.GetBoundPermissionCommand;
@@ -80,7 +79,7 @@ public class TestAEMAdmin {
                 "title-retail");
         c.setConfigBuilder(configBuilder);
         c.execute();
-        System.out.println("Check in crx if order has been updated");
+        System.out.println("Check in jcr if order has been updated");
     }
 
     @Test

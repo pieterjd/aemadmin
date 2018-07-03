@@ -1,20 +1,14 @@
-package com.pieterjd.aemadmin.command.crx.node;
+package com.pieterjd.aemadmin.command.jcr.node;
 
-import com.pieterjd.aemadmin.command.crx.CrxCommand;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
+import com.pieterjd.aemadmin.command.jcr.JcrCommand;
 import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.message.BasicNameValuePair;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by pdrouill on 3/07/2017.
  */
-public class CreateNodeCommand extends CrxCommand {
+public class CreateNodeCommand extends JcrCommand {
     private String primaryType;
     public CreateNodeCommand(String path,String primaryType) {
         super(path);

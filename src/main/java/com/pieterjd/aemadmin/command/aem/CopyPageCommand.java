@@ -1,11 +1,10 @@
 package com.pieterjd.aemadmin.command.aem;
 
-import com.pieterjd.aemadmin.command.crx.CrxCommand;
+import com.pieterjd.aemadmin.command.jcr.JcrCommand;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.client.methods.RequestBuilder;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.io.UnsupportedEncodingException;
@@ -16,7 +15,7 @@ import java.util.List;
 /**
  * Created by pdrouill on 27/06/2017.
  */
-public class CopyPageCommand extends CrxCommand {
+public class CopyPageCommand extends JcrCommand {
     private String destination;
     public CopyPageCommand(String path, String destination) {
         super(path);
