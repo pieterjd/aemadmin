@@ -3,6 +3,9 @@ package com.pieterjd.aemadmin.command;
 import com.github.tsohr.JSONObject;
 import com.pieterjd.aemadmin.config.ConfigBuilder;
 import com.pieterjd.aemadmin.config.LocalAuthorConfigBuilder;
+import com.pieterjd.aemadmin.factory.HttpRequestFactory;
+import com.pieterjd.aemadmin.factory.HttpRequestFactorySingleton;
+import com.pieterjd.aemadmin.factory.Platform;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.http.HttpResponse;
@@ -31,6 +34,7 @@ public abstract class HttpRequestCommand extends AbstractCommand {
     private HttpResponse httpResponse;
     private String httpResponseAsString;
     private Properties properties;
+    private HttpRequestFactory httpRequestFactory;
 
     public static final String CMDLINE_PROPERTY_FILE = "propertiesFile";
 
@@ -38,25 +42,10 @@ public abstract class HttpRequestCommand extends AbstractCommand {
      * If the propertiesFile cmd line property is set, read that file; otherwise use the local author instance
      * @return The properties of the node to connect to
      */
-    private static Properties readDefaultProperties() {
-        Properties result = new Properties();
+    private static HttpRequestFactory readDefaultProperties() {
+        HttpRequestFactory httpRequestFactory = HttpRequestFactorySingleton.getHttpRequestFactoryInstance(Platform.AEM);
+        return httpRequestFactory;
 
-        if(System.getProperty(CMDLINE_PROPERTY_FILE) != null){
-            try (InputStream inputStream = new FileInputStream(System.getProperty("propertiesFile"))) {
-                result.load(inputStream);
-            } catch (IOException e) {
-                System.out.println("Cannot read cmdline provided properties file");
-                result = new LocalAuthorConfigBuilder().build();
-            }
-        }
-        else {
-            try (InputStream inputStream = ClassLoader.getSystemResourceAsStream("aemadmin.properties")) {
-                result.load(inputStream);
-            } catch (IOException e) {
-                result = new LocalAuthorConfigBuilder().build();
-            }
-        }
-        return result;
     }
 
     /**
@@ -64,7 +53,7 @@ public abstract class HttpRequestCommand extends AbstractCommand {
      */
     public HttpRequestCommand() {
 
-       setProperties(readDefaultProperties());
+       setProperties(readDefaultProperties().getProperties());
         setHttpClient(HttpClients.createDefault());
     }
 
