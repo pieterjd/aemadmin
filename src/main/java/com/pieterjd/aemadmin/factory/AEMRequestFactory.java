@@ -1,6 +1,6 @@
 package com.pieterjd.aemadmin.factory;
 
-import com.github.tsohr.HTTP;
+import org.apache.http.HttpRequest;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpUriRequest;
@@ -41,5 +41,43 @@ public class AEMRequestFactory extends AbstractRequestFactory {
         }
         path +="json";
         return getAuthenticatedGetRequestBuilder(uri).build();
+    }
+
+    @Override
+    public HttpRequest getSetPropertyHttpRequest(String path, String propertyName, String propertyValue, String propertyType) throws URISyntaxException {
+        List<NameValuePair> params = new ArrayList<>();
+        params.add(new BasicNameValuePair(propertyName, propertyValue));
+        if(propertyType != null){
+            params.add(new BasicNameValuePair(propertyName +"@TypeHint",propertyType));
+        }
+        HttpUriRequest result = null;
+        try {
+            result =  getAuthenticatedPostRequestBuilder(path)
+                    .setEntity(new UrlEncodedFormEntity(params))
+                    .build();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    @Override
+    public HttpRequest getDeletePropertyHttpRequest(String path, String propertyName) throws URISyntaxException {
+        List<NameValuePair> params = new ArrayList<>();
+        params.add(new BasicNameValuePair(propertyName +"@Delete","some random value"));
+        HttpUriRequest result = null;
+        try {
+            result =  getAuthenticatedPostRequestBuilder(path)
+                    .setEntity(new UrlEncodedFormEntity(params))
+                    .build();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    @Override
+    public HttpRequest getGetPropertyHttpRequest(String path, String propertyName) throws URISyntaxException {
+        return getAuthenticatedGetRequestBuilder(path+".json").build();
     }
 }
