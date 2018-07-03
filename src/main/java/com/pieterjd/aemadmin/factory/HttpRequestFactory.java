@@ -17,7 +17,9 @@ public interface HttpRequestFactory {
     public HttpUriRequest getSetPropertyHttpRequest(String path, String propertyName, String propertyValue, String propertyType) throws URISyntaxException;
     public HttpUriRequest getDeletePropertyHttpRequest(String path, String propertyName) throws URISyntaxException;
     public HttpUriRequest getGetPropertyHttpRequest(String path,String propertyName) throws URISyntaxException;
-
+    //multivalue http request
+    public HttpUriRequest getAddToMultiValuePropertyHttpRequest(String path, String propertyName, String propertyValue, String propertyType) throws URISyntaxException;
+    public HttpUriRequest getRemoveFromMultiValuePropertyHttpRequest(String path, String propertyName, String propertyValue) throws URISyntaxException;
 
     public Properties getProperties();
 }

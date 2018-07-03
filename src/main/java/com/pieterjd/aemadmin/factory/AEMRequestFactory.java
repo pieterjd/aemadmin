@@ -80,4 +80,41 @@ public class AEMRequestFactory extends AbstractRequestFactory {
     public HttpUriRequest getGetPropertyHttpRequest(String path, String propertyName) throws URISyntaxException {
         return getAuthenticatedGetRequestBuilder(path+".json").build();
     }
+
+    @Override
+    public HttpUriRequest getAddToMultiValuePropertyHttpRequest(String path, String propertyName, String propertyValue, String propertyType) throws URISyntaxException {
+        List<NameValuePair> params = new ArrayList<>();
+        if(propertyType != null){
+            params.add(new BasicNameValuePair(propertyName+"@TypeHint",propertyType+"[]"));
+        }
+        params.add(new BasicNameValuePair(propertyName+"@Patch","true"));
+        params.add(new BasicNameValuePair(propertyName,"+"+propertyValue));
+        HttpUriRequest result = null;
+        try {
+            result =  getAuthenticatedPostRequestBuilder(path)
+                    .setEntity(new UrlEncodedFormEntity(params))
+                    .build();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    @Override
+    public HttpUriRequest getRemoveFromMultiValuePropertyHttpRequest(String path, String propertyName, String propertyValue) throws URISyntaxException {
+        List<NameValuePair> params = new ArrayList<>();
+        params.add(new BasicNameValuePair(propertyName+"@Patch","true"));
+        params.add(new BasicNameValuePair(propertyName,"-"+propertyValue));
+        HttpUriRequest result = null;
+        try {
+            result =  getAuthenticatedPostRequestBuilder(path)
+                    .setEntity(new UrlEncodedFormEntity(params))
+                    .build();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
 }

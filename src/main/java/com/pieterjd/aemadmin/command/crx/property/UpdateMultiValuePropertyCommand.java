@@ -30,24 +30,6 @@ public abstract class UpdateMultiValuePropertyCommand extends PropertyCommand{
         this.propertyType = propertyType;
     }
 
-    protected abstract List<NameValuePair> getRequestParameters();
-
-    @Override
-    public HttpUriRequest getRequest() throws URISyntaxException {
-        List<NameValuePair> params = getRequestParameters();
-        //cf https://sling.apache.org/documentation/bundles/manipulating-content-the-slingpostservlet-servlets-post.html#patch
-
-        HttpUriRequest result = null;
-        try {
-            result =  getAuthenticatedPostRequestBuilder(getPath())
-                    .setEntity(new UrlEncodedFormEntity(params))
-                    .build();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        return result;
-    }
 
     @Override
     protected ToStringBuilder getToStringBuilder() {

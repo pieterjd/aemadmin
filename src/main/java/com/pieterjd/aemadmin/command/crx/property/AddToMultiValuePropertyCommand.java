@@ -1,8 +1,10 @@
 package com.pieterjd.aemadmin.command.crx.property;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.message.BasicNameValuePair;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,16 +22,9 @@ public class AddToMultiValuePropertyCommand extends UpdateMultiValuePropertyComm
         super(path, propertyName, propertyValue, propertyType);
     }
 
+
     @Override
-    protected List<NameValuePair> getRequestParameters() {
-        List<NameValuePair> params = new ArrayList<>();
-        if(getPropertyType() != null){
-            params.add(new BasicNameValuePair(getPropertyName()+"@TypeHint",getPropertyType()+"[]"));
-        }
-        params.add(new BasicNameValuePair(getPropertyName()+"@Patch","true"));
-        params.add(new BasicNameValuePair(getPropertyName(),"+"+getPropertyValue()));
-        return params;
+    public HttpUriRequest getRequest() throws URISyntaxException {
+        return getHttpRequestFactory().getAddToMultiValuePropertyHttpRequest(getPath(),getPropertyName(),getPropertyValue(),getPropertyType());
     }
-
-
 }
