@@ -10,7 +10,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AEMRequestFactory extends AbstractRequestFactory {
+public class SlingRequestFactoryImpl extends AbstractRequestFactory {
     @Override
     public HttpUriRequest getCreateNodeHttpRequest(String path, String primaryType) throws URISyntaxException {
         HttpUriRequest result = null;
