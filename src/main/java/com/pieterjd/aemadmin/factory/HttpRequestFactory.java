@@ -21,5 +21,7 @@ public interface HttpRequestFactory {
     public HttpUriRequest getAddToMultiValuePropertyHttpRequest(String path, String propertyName, String propertyValue, String propertyType) throws URISyntaxException;
     public HttpUriRequest getRemoveFromMultiValuePropertyHttpRequest(String path, String propertyName, String propertyValue) throws URISyntaxException;
 
+    //bundle http request
+    public HttpUriRequest getRefreshBundleHttpRequest(int bundleId) throws URISyntaxException;
     public Properties getProperties();
 }

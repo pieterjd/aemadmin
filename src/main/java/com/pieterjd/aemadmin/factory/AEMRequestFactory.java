@@ -116,4 +116,22 @@ public class AEMRequestFactory extends AbstractRequestFactory {
 
         return result;
     }
+
+    @Override
+    public HttpUriRequest getRefreshBundleHttpRequest(int bundleId) throws URISyntaxException {
+        //checking url /system/console/bundles/<id>
+        HttpUriRequest result = null;
+        List<NameValuePair> params = new ArrayList<>();
+        params.add(new BasicNameValuePair("action","refresh"));
+        try {
+            result = getAuthenticatedPostRequestBuilder("/system/console/bundles/"+bundleId)
+                    .setEntity(new UrlEncodedFormEntity(params))
+                    .build();
+        } catch (URISyntaxException e) {
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

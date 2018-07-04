@@ -25,25 +25,5 @@ public abstract class AbstractBundleCommand extends HttpRequestCommand {
         this.bundleId = bundleId;
     }
 
-    protected abstract String getAction() ;
 
-
-
-    @Override
-    public HttpUriRequest getRequest() throws URISyntaxException {
-        //checking url /system/console/bundles/<id>
-        HttpUriRequest result = null;
-        List<NameValuePair> params = new ArrayList<>();
-        params.add(new BasicNameValuePair("action",getAction()));
-        try {
-            result = getAuthenticatedPostRequestBuilder("/system/console/bundles/"+getBundleId())
-                    .setEntity(new UrlEncodedFormEntity(params))
-                    .build();
-        } catch (URISyntaxException e) {
-
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
 }
