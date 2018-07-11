@@ -5,7 +5,7 @@ import com.github.tsohr.JSONException;
 import com.github.tsohr.JSONObject;
 import com.pieterjd.aemadmin.command.HttpRequestCommand;
 import com.pieterjd.aemadmin.command.LoginCommand;
-import com.pieterjd.aemadmin.command.StatusBundlesCommand;
+import com.pieterjd.aemadmin.command.bundles.StatusBundlesCommand;
 import com.pieterjd.aemadmin.command.aem.security.SearchPrincipalCommand;
 import com.pieterjd.aemadmin.command.jcr.node.ReorderNodeAfterCommand;
 import com.pieterjd.aemadmin.command.jcr.property.GetPropertyCommand;

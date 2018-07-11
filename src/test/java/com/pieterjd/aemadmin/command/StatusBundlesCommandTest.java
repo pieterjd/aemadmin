@@ -1,7 +1,7 @@
 package com.pieterjd.aemadmin.command;
 
 import com.github.tsohr.JSONObject;
-import org.junit.Assert;
+import com.pieterjd.aemadmin.command.bundles.StatusBundlesCommand;
 import org.junit.Before;
 import org.junit.Test;
 

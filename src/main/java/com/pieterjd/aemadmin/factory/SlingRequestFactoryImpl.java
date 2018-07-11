@@ -152,4 +152,16 @@ public class SlingRequestFactoryImpl extends AbstractRequestFactory {
         }
         return result;
     }
+
+    @Override
+    public HttpUriRequest getStatusBundlesHttpRequest() throws URISyntaxException {
+        //checking url /system/console/status-Bundles.json
+        HttpUriRequest result = null;
+        try {
+            result = getAuthenticatedGetRequestBuilder("/system/console/bundles.json").build();
+        } catch (URISyntaxException e) {
+
+        }
+        return result;
+    }
 }

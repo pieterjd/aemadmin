@@ -62,6 +62,11 @@ public class AEMRequestFactoryImpl extends AbstractRequestFactory implements AEM
     }
 
     @Override
+    public HttpUriRequest getStatusBundlesHttpRequest() throws URISyntaxException {
+        return slingRequestFactory.getStatusBundlesHttpRequest();
+    }
+
+    @Override
     public Properties getProperties() {
         return slingRequestFactory.getProperties();
     }

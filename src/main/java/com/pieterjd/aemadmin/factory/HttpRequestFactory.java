@@ -24,5 +24,6 @@ public interface HttpRequestFactory {
     //bundle http request
     public HttpUriRequest getRefreshBundleHttpRequest(int bundleId) throws URISyntaxException;
     public HttpUriRequest getUninstallBundleHttpRequest(int bundleId) throws URISyntaxException;
+    public HttpUriRequest getStatusBundlesHttpRequest() throws URISyntaxException;
     public Properties getProperties();
 }
