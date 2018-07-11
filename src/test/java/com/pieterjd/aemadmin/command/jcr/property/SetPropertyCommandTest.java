@@ -1,10 +1,8 @@
-package com.pieterjd.aemadmin.command.crx.property;
+package com.pieterjd.aemadmin.command.jcr.property;
 
 import org.junit.Test;
 
 import java.io.IOException;
-
-import static org.junit.Assert.*;
 
 public class SetPropertyCommandTest {
 

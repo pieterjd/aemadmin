@@ -1,15 +1,9 @@
-package com.pieterjd.aemadmin.command.crx.property;
+package com.pieterjd.aemadmin.command.jcr.property;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.message.BasicNameValuePair;
 
-import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by pdrouill on 26/06/2017.
@@ -47,19 +41,6 @@ public class SetPropertyCommand extends PropertyCommand {
 
     @Override
     public HttpUriRequest getRequest() throws URISyntaxException {
-        List<NameValuePair> params = new ArrayList<>();
-        params.add(new BasicNameValuePair(getPropertyName(),getPropertyValue()));
-        if(getPropertyType() != null){
-            params.add(new BasicNameValuePair(getPropertyName()+"@TypeHint",getPropertyType()));
-        }
-        HttpUriRequest result = null;
-        try {
-            result =  getAuthenticatedPostRequestBuilder(getPath())
-                    .setEntity(new UrlEncodedFormEntity(params))
-                    .build();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-        return result;
+        return getHttpRequestFactory().getSetPropertyHttpRequest(getPath(),getPropertyName(),getPropertyValue(),getPropertyValue());
     }
 }

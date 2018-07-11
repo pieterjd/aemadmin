@@ -1,4 +1,4 @@
-package com.pieterjd.aemadmin.command.crx.property;
+package com.pieterjd.aemadmin.command.jcr.property;
 
 
 import com.github.tsohr.JSONArray;
@@ -15,7 +15,7 @@ public class GetPropertyCommand extends PropertyCommand {
 
     @Override
     public HttpUriRequest getRequest() throws URISyntaxException {
-        return getAuthenticatedGetRequestBuilder(getPath()+".json").build();
+        return getHttpRequestFactory().getGetPropertyHttpRequest(getPath(),getPropertyName());
     }
 
     /**

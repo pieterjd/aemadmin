@@ -1,4 +1,4 @@
-package com.pieterjd.aemadmin.command.crx;
+package com.pieterjd.aemadmin.command.aem;
 
 import com.pieterjd.aemadmin.command.HttpRequestCommand;
 import org.apache.http.NameValuePair;
@@ -16,7 +16,7 @@ public class EnableCrxCommand extends HttpRequestCommand {
     public HttpUriRequest getRequest() throws URISyntaxException {
         List<NameValuePair> params = new ArrayList<>();
         params.add(new BasicNameValuePair("jcr:primaryType","sling:OsgiConfig"));
-        params.add(new BasicNameValuePair("alias","/crx/server"));
+        params.add(new BasicNameValuePair("alias","/jcr/server"));
         params.add(new BasicNameValuePair("dav.create-absolute-uri","true"));
         params.add(new BasicNameValuePair("dav.create-absolute-uri@TypeHint","Boolean"));
         HttpUriRequest result = null;

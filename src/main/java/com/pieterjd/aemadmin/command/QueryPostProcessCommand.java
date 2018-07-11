@@ -3,7 +3,6 @@ package com.pieterjd.aemadmin.command;
 
 import com.github.tsohr.JSONArray;
 import com.github.tsohr.JSONObject;
-import com.pieterjd.aemadmin.command.crx.property.SetPropertyCommand;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**

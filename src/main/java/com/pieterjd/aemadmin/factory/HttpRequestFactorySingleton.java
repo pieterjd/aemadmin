@@ -5,22 +5,30 @@ package com.pieterjd.aemadmin.factory;
  * Entry point for obtaining a HttpRequestFactory based on the platform
  */
 public class HttpRequestFactorySingleton {
-    private static AEMRequestFactory aemRequestFactory;
+    private static SlingRequestFactoryImpl slingRequestFactory;
+    private static AEMRequestFactoryImpl aemRequestFactory;
     public static HttpRequestFactory getHttpRequestFactoryInstance(Platform platform){
         switch(platform){
             case AEM:
-                return getAEMHttpRequestFactory();
+                break;
             case HIPPO:
                 break;
             case SLING:
-                break;
+                return getSlingHttpRequestFactory();
         }
-        return getAEMHttpRequestFactory();
+        return getSlingHttpRequestFactory();
+    }
+
+    private static HttpRequestFactory getSlingHttpRequestFactory(){
+        if(slingRequestFactory == null){
+            slingRequestFactory = new SlingRequestFactoryImpl();
+        }
+        return slingRequestFactory;
     }
 
     private static HttpRequestFactory getAEMHttpRequestFactory(){
         if(aemRequestFactory == null){
-            aemRequestFactory = new AEMRequestFactory();
+            aemRequestFactory = new AEMRequestFactoryImpl();
         }
         return aemRequestFactory;
     }

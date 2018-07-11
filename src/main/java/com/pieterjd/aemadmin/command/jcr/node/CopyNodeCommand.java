@@ -1,7 +1,7 @@
-package com.pieterjd.aemadmin.command.crx.node;
+package com.pieterjd.aemadmin.command.jcr.node;
 
-import com.pieterjd.aemadmin.command.crx.CrxCommand;
-import com.pieterjd.aemadmin.command.crx.property.SetPropertyCommand;
+import com.pieterjd.aemadmin.command.jcr.JcrCommand;
+import com.pieterjd.aemadmin.command.jcr.property.SetPropertyCommand;
 import org.apache.http.client.methods.HttpUriRequest;
 import com.github.tsohr.JSONException;
 import com.github.tsohr.JSONObject;
@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created by pdrouill on 6/07/2017.
  */
-public class CopyNodeCommand extends CrxCommand {
+public class CopyNodeCommand extends JcrCommand {
     private final String[] excludedProperties = {};
     //create list with properties to exclude
     private List<String> excluded = Arrays.asList(excludedProperties);

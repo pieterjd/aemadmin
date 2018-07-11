@@ -1,4 +1,4 @@
-package com.pieterjd.aemadmin.command.crx.node;
+package com.pieterjd.aemadmin.command.jcr.node;
 
 import org.junit.Before;
 import org.junit.Test;

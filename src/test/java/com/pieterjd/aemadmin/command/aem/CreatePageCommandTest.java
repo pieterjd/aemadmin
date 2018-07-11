@@ -1,7 +1,7 @@
 package com.pieterjd.aemadmin.command.aem;
 
-import com.pieterjd.aemadmin.command.crx.node.GetNodeCommand;
-import com.pieterjd.aemadmin.command.crx.property.GetPropertyCommand;
+import com.pieterjd.aemadmin.command.jcr.node.GetNodeCommand;
+import com.pieterjd.aemadmin.command.jcr.property.GetPropertyCommand;
 import org.junit.Before;
 import org.junit.Test;
 

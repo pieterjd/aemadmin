@@ -1,9 +1,9 @@
 package com.pieterjd.aemadmin.command.aem;
 
 import com.pieterjd.aemadmin.command.CompositeCommand;
-import com.pieterjd.aemadmin.command.crx.node.CreateNodeCommand;
-import com.pieterjd.aemadmin.command.crx.node.DeleteNodeCommand;
-import com.pieterjd.aemadmin.command.crx.property.SetPropertyCommand;
+import com.pieterjd.aemadmin.command.jcr.node.CreateNodeCommand;
+import com.pieterjd.aemadmin.command.jcr.node.DeleteNodeCommand;
+import com.pieterjd.aemadmin.command.jcr.property.SetPropertyCommand;
 
 /**
  * Created by pdrouill on 3/07/2017.

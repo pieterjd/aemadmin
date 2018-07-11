@@ -1,4 +1,4 @@
-package com.pieterjd.aemadmin.command.crx.property;
+package com.pieterjd.aemadmin.command.jcr.property;
 
 import org.junit.Before;
 import org.junit.Test;
