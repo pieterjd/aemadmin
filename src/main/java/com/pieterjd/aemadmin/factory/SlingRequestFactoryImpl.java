@@ -134,4 +134,22 @@ public class SlingRequestFactoryImpl extends AbstractRequestFactory {
         }
         return result;
     }
+
+    @Override
+    public HttpUriRequest getUninstallBundleHttpRequest(int bundleId) throws URISyntaxException {
+        //checking url /system/console/bundles/<id>
+        HttpUriRequest result = null;
+        List<NameValuePair> params = new ArrayList<>();
+        params.add(new BasicNameValuePair("action","uninstall"));
+        try {
+            result = getAuthenticatedPostRequestBuilder("/system/console/bundles/"+bundleId)
+                    .setEntity(new UrlEncodedFormEntity(params))
+                    .build();
+        } catch (URISyntaxException e) {
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 }

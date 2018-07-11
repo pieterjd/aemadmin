@@ -1,12 +1,16 @@
 package com.pieterjd.aemadmin.command.bundles;
 
+import org.apache.http.client.methods.HttpUriRequest;
+
+import java.net.URISyntaxException;
+
 public class UninstallBundleCommand extends AbstractBundleCommand {
     public UninstallBundleCommand(int bundleId) {
         super(bundleId);
     }
 
     @Override
-    protected String getAction() {
-        return "uninstall";
+    public HttpUriRequest getRequest() throws URISyntaxException {
+        return getHttpRequestFactory().getUninstallBundleHttpRequest(getBundleId());
     }
 }
