@@ -36,7 +36,7 @@ public class ConfigFactory {
     }
     private static ConfigFactory instance;
     private ConfigFactory(){
-        readDefaultProperties();
+        setProperties(readDefaultProperties());
     }
 
     public Properties getProperties() {
