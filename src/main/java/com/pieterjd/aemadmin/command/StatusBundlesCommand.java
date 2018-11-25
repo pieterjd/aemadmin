@@ -1,5 +1,6 @@
 package com.pieterjd.aemadmin.command;
 
+import com.github.tsohr.JSONArray;
 import org.apache.http.client.methods.HttpUriRequest;
 
 import java.io.IOException;
@@ -35,6 +36,10 @@ public class StatusBundlesCommand extends HttpRequestCommand {
     }
     public int getResolvedBundlesCount() throws IOException {
         return getBundleCount(3);
+    }
+
+    public JSONArray getBundles() throws IOException {
+        return getHttpResponseAsJSON().getJSONArray("data");
     }
 
 
