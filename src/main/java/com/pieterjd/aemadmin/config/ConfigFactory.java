@@ -28,7 +28,7 @@ public class ConfigFactory {
         else {
             try (InputStream inputStream = ClassLoader.getSystemResourceAsStream("aemadmin.properties")) {
                 result.load(inputStream);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 result = new LocalAuthorConfigBuilder().build();
             }
         }
