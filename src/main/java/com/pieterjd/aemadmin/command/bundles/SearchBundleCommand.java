@@ -12,9 +12,9 @@ import java.util.List;
 public class SearchBundleCommand extends AbstractCommand {
     private String keyword;
     private StatusBundlesCommand sbc;
-    private List<Integer> hits;
+    private List<JSONObject> hits;
 
-    public List<Integer> getHits() {
+    public List<JSONObject> getHits() {
         return hits;
     }
 
@@ -51,7 +51,7 @@ public class SearchBundleCommand extends AbstractCommand {
                 JSONObject bundle = bundles.getJSONObject(i);
                 if(bundle.getString("name").contains(getKeyword()) ||
                         bundle.getString("symbolicName").contains(getKeyword())){
-                    hits.add(bundle.getInt("id"));
+                    hits.add(bundle);
                 }
 
             }
