@@ -7,6 +7,6 @@ public class StartBundleCommand extends AbstractBundleCommand {
 
     @Override
     protected String getAction() {
-        return "update";
+        return "start";
     }
 }
