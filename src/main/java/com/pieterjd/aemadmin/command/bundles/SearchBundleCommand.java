@@ -45,15 +45,14 @@ public class SearchBundleCommand extends AbstractCommand {
     public void execute() {
         getSbc().execute();
         try {
-            JSONArray bundles = getSbc().getBundles();
+            List<JSONObject> bundles = getSbc().getBundles();
             hits = new ArrayList<>();
-            for(int i =0 ; i< bundles.length();i++){
-                JSONObject bundle = bundles.getJSONObject(i);
+            for(int i =0 ; i< bundles.size();i++){
+                JSONObject bundle = bundles.get(i);
                 if(bundle.getString("name").contains(getKeyword()) ||
                         bundle.getString("symbolicName").contains(getKeyword())){
                     hits.add(bundle);
                 }
-
             }
         } catch (IOException e) {
             e.printStackTrace();
