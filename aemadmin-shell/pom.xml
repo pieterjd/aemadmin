@@ -4,6 +4,13 @@
     <groupId>com.pieterjd</groupId>
     <artifactId>aemadmin-shell</artifactId>
     <name>AEM Admin - Shell</name>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.0.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <version>0.1-SNAPSHOT</version>
     <dependencies>
         <dependency>
             <groupId>com.pieterjd</groupId>
@@ -27,12 +34,7 @@
             <version>0.0.1</version>
         </dependency>
     </dependencies>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.0.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+
     <build>
         <plugins>
             <plugin>
