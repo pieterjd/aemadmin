@@ -7,7 +7,7 @@ import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 
 @ShellComponent
-public class ConfigShellCommands {
+public class ConfigCommands {
     @ShellMethod("connect to an AEM instance")
     public void connect(String baseUrl,String userName,String password,@ShellOption(defaultValue = "4502") String port){
         ConfigFactory.getConfig().setProperty("baseUrl",baseUrl);

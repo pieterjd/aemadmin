@@ -5,3 +5,10 @@
 1543264988380:list-bundles
 1543265180665:quit
 1543265525250:list-bundles
+1543356309623:install-package --package-name /tmp
+1543356312276:quit
+1543356445868:install-package --package-name /Users/pieterjd/Documents
+1543426875926:q
+1543426877499:quit
+1543428279438:list-package
+1543428284898:list-packages

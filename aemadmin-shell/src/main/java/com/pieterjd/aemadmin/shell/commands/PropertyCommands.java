@@ -15,7 +15,7 @@ import org.springframework.shell.standard.ShellOption;
 import java.io.IOException;
 
 @ShellComponent
-public class PropertyShellCommands {
+public class PropertyCommands {
     private String getStringResponse(HttpRequestCommand c){
             c.execute();
             return Boolean.toString(c.isSuccessfullyExecuted());

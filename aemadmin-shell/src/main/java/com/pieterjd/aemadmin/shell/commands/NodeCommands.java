@@ -12,7 +12,7 @@ import org.springframework.shell.standard.ShellOption;
 import java.io.IOException;
 
 @ShellComponent
-public class NodeShellCommands {
+public class NodeCommands {
     private String getStringResponse(HttpRequestCommand c){
             c.execute();
             return Boolean.toString(c.isSuccessfullyExecuted());
