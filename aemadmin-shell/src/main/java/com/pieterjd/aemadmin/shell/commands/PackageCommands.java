@@ -4,9 +4,13 @@ import com.pieterjd.aemadmin.command.packmgr.BuildPackageCommand;
 import com.pieterjd.aemadmin.command.packmgr.DownloadPackageCommand;
 import com.pieterjd.aemadmin.command.packmgr.InstallPackageCommand;
 import com.pieterjd.aemadmin.command.packmgr.ListPackagesCommand;
+import com.pieterjd.aemadmin.shell.utils.DirectoryValueProvider;
+import org.springframework.shell.standard.FileValueProvider;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
+import org.springframework.shell.standard.ShellOption;
 
+import java.io.File;
 import java.io.IOException;
 
 @ShellComponent
@@ -19,8 +23,8 @@ public class PackageCommands {
     }
 
     @ShellMethod("Installs a package")
-    public String installPackage(String  packageName) throws IOException {
-        InstallPackageCommand c = new InstallPackageCommand(packageName);
+    public String installPackage(@ShellOption(valueProvider = DirectoryValueProvider.class) File packageName) throws IOException {
+        InstallPackageCommand c = new InstallPackageCommand(packageName.getPath());
         c.execute();
         return c.getHttpResponseAsJSON().toString(1);
     }
