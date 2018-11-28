@@ -13,4 +13,4 @@
 **/kpngb*/*
 **/javadoc/*
 **/release*/*
-*.log
+**/spring-shell.log
