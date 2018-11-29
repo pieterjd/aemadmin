@@ -30,7 +30,7 @@ public class BundleCommands {
         for(int i=0;i<data.length();i++){
             bundles.add(data.getJSONObject(i));
         }
-        TableModel model = new JsonTableModel(bundles);
+        TableModel model = new JsonTableModel(bundles,"id","name","version","state");
         return new TableBuilder(model)
                 .addFullBorder(BorderStyle.air)
                 .build();
