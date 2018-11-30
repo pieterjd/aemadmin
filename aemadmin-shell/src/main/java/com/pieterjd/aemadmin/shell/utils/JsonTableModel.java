@@ -51,7 +51,8 @@ public class JsonTableModel extends TableModel {
         if(row == 0 || (showColumnNamesAtEnd && row == getRowCount()-1)){
             return key;
         }
-
-        return jsonObjects.get(row-1).get(key);
+        JSONObject data = jsonObjects.get(row-1);
+        return data.has(key)?data.get(key):""
+                ;
     }
 }
