@@ -10,6 +10,7 @@ public class JsonTableModel extends TableModel {
     private List<JSONObject> jsonObjects;
     private List<String> properties;
     private boolean showAllProperties;
+    private boolean showColumnNamesAtEnd;
 
     public JsonTableModel(List<JSONObject> jsonObjects){
         this(jsonObjects,new String[0]);
@@ -22,11 +23,14 @@ public class JsonTableModel extends TableModel {
            this.properties.add(prop);
        }
        this.showAllProperties = this.properties.size() == 0;
+       this.showColumnNamesAtEnd = this.jsonObjects.size()>20;
     }
 
     @Override
     public int getRowCount() {
-        return jsonObjects.size()+1;
+        int count = jsonObjects.size()+1;
+        if(showColumnNamesAtEnd) count++;
+        return count;
     }
 
     @Override
@@ -44,7 +48,7 @@ public class JsonTableModel extends TableModel {
         if(!showAllProperties){
             key = properties.get(column);
         }
-        if(row == 0){
+        if(row == 0 || (showColumnNamesAtEnd && row == getRowCount()-1)){
             return key;
         }
 

@@ -30,7 +30,7 @@ public class BundleCommands {
         }
         TableModel model = new BundleJsonTableModel(bundles);
         return new TableBuilder(model)
-                .addFullBorder(BorderStyle.air)
+                .addFullBorder(BorderStyle.fancy_light)
                 .build();
         //return c.getHttpResponseAsJSON().toString(1);
     }
@@ -71,7 +71,7 @@ public class BundleCommands {
 
         TableModel model = new BundleJsonTableModel(c.getHits());
         return new TableBuilder(model)
-                .addFullBorder(BorderStyle.air)
+                .addFullBorder(BorderStyle.fancy_light)
                 .build();
     }
 
