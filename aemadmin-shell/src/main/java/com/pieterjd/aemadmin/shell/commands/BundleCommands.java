@@ -4,10 +4,9 @@ import com.github.tsohr.JSONArray;
 import com.github.tsohr.JSONObject;
 import com.pieterjd.aemadmin.command.StatusBundlesCommand;
 import com.pieterjd.aemadmin.command.bundles.*;
-import com.pieterjd.aemadmin.shell.utils.JsonTableModel;
+import com.pieterjd.aemadmin.shell.utils.BundleJsonTableModel;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
-import org.springframework.shell.standard.ShellOption;
 import org.springframework.shell.table.BorderStyle;
 import org.springframework.shell.table.Table;
 import org.springframework.shell.table.TableBuilder;
@@ -16,7 +15,6 @@ import org.springframework.shell.table.TableModel;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @ShellComponent
 public class BundleCommands {
@@ -30,7 +28,7 @@ public class BundleCommands {
         for(int i=0;i<data.length();i++){
             bundles.add(data.getJSONObject(i));
         }
-        TableModel model = new JsonTableModel(bundles,"id","name","version","state");
+        TableModel model = new BundleJsonTableModel(bundles);
         return new TableBuilder(model)
                 .addFullBorder(BorderStyle.air)
                 .build();
@@ -67,19 +65,14 @@ public class BundleCommands {
     }
 
     @ShellMethod("Search for a bundle containing a keyword in its name or symbolicName")
-    public String searchBundle(String keyword,@ShellOption(defaultValue="false",help = "when this switch is enable, only bundle ids are returned")boolean id) throws IOException {
+    public Table searchBundle(String keyword) throws IOException {
         SearchBundleCommand c = new SearchBundleCommand(keyword);
         c.execute();
-        String result = c.getHits().stream()
-                .map(b -> b.toString(1))
-                .reduce("",(x,y) -> x+y);
-        if(id){
-            result = c.getHits().stream()
-                    .map(b -> b.getInt("id"))
-                    .collect(Collectors.toList())
-            .toString();
-        }
-        return result;
+
+        TableModel model = new BundleJsonTableModel(c.getHits());
+        return new TableBuilder(model)
+                .addFullBorder(BorderStyle.air)
+                .build();
     }
 
     @ShellMethod("Get a bundle using the bundle's id")
