@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 
 @ShellComponent
 public class QueryCommands {
-    @ShellMethod("queries the JCR")
+    @ShellMethod("queries the JCR. Conditions are comma separated. For more information, please check  the AEM Query Builder API")
     public Table query(@ShellOption String criteria){
         QueryCommand c = new QueryCommand();
         Stream.of(criteria.split(","))
