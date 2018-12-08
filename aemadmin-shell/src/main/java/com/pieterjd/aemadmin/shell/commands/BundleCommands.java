@@ -7,6 +7,7 @@ import com.pieterjd.aemadmin.command.bundles.*;
 import com.pieterjd.aemadmin.shell.utils.BundleJsonTableModel;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
+import org.springframework.shell.standard.ShellOption;
 import org.springframework.shell.table.BorderStyle;
 import org.springframework.shell.table.Table;
 import org.springframework.shell.table.TableBuilder;
@@ -36,7 +37,7 @@ public class BundleCommands {
     }
 
     @ShellMethod("Start a bundle")
-    public String startBundle(String bundleId) throws IOException {
+    public String startBundle(@ShellOption(value={"bundleId","id"}) String bundleId) throws IOException {
         StartBundleCommand c = new StartBundleCommand(Integer.parseInt(bundleId));
         c.execute();
         return c.toString();
@@ -44,21 +45,21 @@ public class BundleCommands {
 
 
     @ShellMethod("Stop a bundle")
-    public String stopBundle(String bundleId) throws IOException {
+    public String stopBundle(@ShellOption(value={"bundleId","id"}) String bundleId) throws IOException {
         StopBundleCommand c = new StopBundleCommand(Integer.parseInt(bundleId));
         c.execute();
         return c.toString();
     }
 
     @ShellMethod("Update a bundle")
-    public String updateBundle(String bundleId) throws IOException {
+    public String updateBundle(@ShellOption(value={"bundleId","id"}) String bundleId) throws IOException {
         UpdateBundleCommand c = new UpdateBundleCommand(Integer.parseInt(bundleId));
         c.execute();
         return c.toString();
     }
 
     @ShellMethod("Refresh a bundle")
-    public String refreshBundle(String bundleId) throws IOException {
+    public String refreshBundle(@ShellOption(value={"bundleId","id"}) String bundleId) throws IOException {
         RefreshBundleCommand c = new RefreshBundleCommand(Integer.parseInt(bundleId));
         c.execute();
         return c.toString();
@@ -76,7 +77,7 @@ public class BundleCommands {
     }
 
     @ShellMethod("Get a bundle using the bundle's id")
-    public String getBundle(String bundleId) throws IOException {
+    public String getBundle(@ShellOption(value={"bundleId","id"}) String bundleId) throws IOException {
         StatusBundlesCommand c = new StatusBundlesCommand();
         c.execute();
         return c.getBundles().stream()
