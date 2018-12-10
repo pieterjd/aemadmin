@@ -25,4 +25,9 @@ public class AEMAdminShellConfig {
 
         return new NodeServiceImpl();
     }
+    @Bean
+    public PackageService getPackageService(){
+
+        return new PackageServiceImpl();
+    }
 }
