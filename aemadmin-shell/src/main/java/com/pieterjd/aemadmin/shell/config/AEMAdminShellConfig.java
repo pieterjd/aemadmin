@@ -1,8 +1,8 @@
 package com.pieterjd.aemadmin.shell.config;
 
 
-import com.pieterjd.aemadmin.service.AEMAdminService;
-import com.pieterjd.aemadmin.service.AemAdminServiceImpl;
+import com.pieterjd.aemadmin.service.BundleService;
+import com.pieterjd.aemadmin.service.BundleServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class AEMAdminShellConfig {
 
     @Bean
-    public AEMAdminService getAemAdminService(){
-        return new AemAdminServiceImpl();
+    public BundleService getBundleService(){
+        return new BundleServiceImpl();
     }
 }

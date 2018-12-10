@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A default implementation of {@link AEMAdminService}
+ * A default implementation of {@link BundleService}
  */
 
-public class AemAdminServiceImpl implements AEMAdminService {
+public class BundleServiceImpl implements BundleService {
     @Override
     public List<JSONObject> getBundles() throws IOException {
         StatusBundlesCommand c = new StatusBundlesCommand();
