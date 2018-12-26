@@ -35,4 +35,10 @@ public class AEMAdminShellConfig {
 
         return new PropertyServiceImpl();
     }
+
+    @Bean
+    public QueryService getQueryService(){
+
+        return new QueryServiceImpl();
+    }
 }
