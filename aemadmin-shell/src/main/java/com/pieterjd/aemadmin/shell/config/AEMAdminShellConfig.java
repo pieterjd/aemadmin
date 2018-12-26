@@ -30,4 +30,9 @@ public class AEMAdminShellConfig {
 
         return new PackageServiceImpl();
     }
+    @Bean
+    public PropertyService getPropertyService(){
+
+        return new PropertyServiceImpl();
+    }
 }
