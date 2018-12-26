@@ -16,13 +16,13 @@ public interface BundleService {
 
     // bundle methods
 
-    public List<JSONObject> getBundles() throws IOException;
-    public String startBundle(int bundleId);
-    public String stopBundle(int bundleId);
-    public String updateBundle(int bundleId);
-    public String refreshBundle(int bundleId);
-    public String getBundle(int bundleId) throws IOException;
-    public List<JSONObject> searchBundle(String keyword);
+    List<JSONObject> getBundles() throws IOException;
+    String startBundle(int bundleId);
+    String stopBundle(int bundleId);
+    String updateBundle(int bundleId);
+    String refreshBundle(int bundleId);
+    String getBundle(int bundleId) throws IOException;
+    List<JSONObject> searchBundle(String keyword);
 
 
 
