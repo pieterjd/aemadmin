@@ -2,6 +2,7 @@ package com.pieterjd.aemadmin.command.packmgr;
 
 import org.apache.http.client.methods.HttpUriRequest;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -26,6 +27,8 @@ public class InstallPackageCommand extends PackageMgrCommand {
 
     @Override
     public void execute() {
+        File f = new File(getPackageName());
+        System.out.println(String.format("Installing package %s",f.getName()));
         super.execute();
         try {
             boolean installSuccess = getHttpResponseAsJSON().getBoolean("success");
