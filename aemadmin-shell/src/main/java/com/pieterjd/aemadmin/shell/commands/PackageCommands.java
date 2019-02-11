@@ -6,8 +6,10 @@ import com.pieterjd.aemadmin.command.packmgr.BuildPackageCommand;
 import com.pieterjd.aemadmin.command.packmgr.DownloadPackageCommand;
 import com.pieterjd.aemadmin.command.packmgr.InstallPackageCommand;
 import com.pieterjd.aemadmin.command.packmgr.ListPackagesCommand;
+import com.pieterjd.aemadmin.service.PackageService;
 import com.pieterjd.aemadmin.shell.utils.DirectoryValueProvider;
 import com.pieterjd.aemadmin.shell.utils.JsonTableModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
@@ -23,18 +25,15 @@ import java.util.List;
 
 @ShellComponent
 public class PackageCommands {
+
+    @Autowired
+    private PackageService service;
+
     @ShellMethod("List all packages")
     public Table listPackages() throws IOException {
-        ListPackagesCommand c = new ListPackagesCommand();
-        c.execute();
 
-        List<JSONObject> packages = new ArrayList<>();
-        JSONArray data = c.getHttpResponseAsJSON()
-                .getJSONObject("crx").getJSONObject("response")
-                .getJSONObject("data").getJSONObject("packages").getJSONArray("package");
-        for(int i=0;i<data.length();i++){
-            packages.add(data.getJSONObject(i));
-        }
+        List<JSONObject> packages = service.listPackages();
+
         TableModel model = new JsonTableModel(packages);
         return new TableBuilder(model)
                 .addFullBorder(BorderStyle.air)
@@ -43,22 +42,16 @@ public class PackageCommands {
 
     @ShellMethod("Installs a package")
     public String installPackage(@ShellOption(valueProvider = DirectoryValueProvider.class) File packageName) throws IOException {
-        InstallPackageCommand c = new InstallPackageCommand(packageName.getPath());
-        c.execute();
-        return c.getHttpResponseAsJSON().toString(1);
+        return service.installPackage(packageName);
     }
 
     @ShellMethod("Builds a package")
     public String buildPackage(String  packageName) throws IOException {
-        BuildPackageCommand c = new BuildPackageCommand(packageName);
-        c.execute();
-        return c.getHttpResponseAsString();
+        return service.buildPackage(packageName);
     }
 
     @ShellMethod("Downloads a package")
     public String downloadPackage(String  packageName,String fileName) throws IOException {
-        DownloadPackageCommand c = new DownloadPackageCommand(packageName,fileName);
-        c.execute();
-        return c.getHttpResponseAsString();
+        return service.downloadPackage(packageName,fileName);
     }
 }

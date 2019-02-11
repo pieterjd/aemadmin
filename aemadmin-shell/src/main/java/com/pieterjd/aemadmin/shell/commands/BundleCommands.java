@@ -1,7 +1,7 @@
 package com.pieterjd.aemadmin.shell.commands;
 
 import com.github.tsohr.JSONObject;
-import com.pieterjd.aemadmin.service.AEMAdminService;
+import com.pieterjd.aemadmin.service.BundleService;
 import com.pieterjd.aemadmin.shell.utils.BundleJsonTableModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
@@ -19,7 +19,7 @@ import java.util.List;
 public class BundleCommands {
 
     @Autowired
-    private AEMAdminService service;
+    private BundleService service;
 
 
     @ShellMethod("List all bundles")
