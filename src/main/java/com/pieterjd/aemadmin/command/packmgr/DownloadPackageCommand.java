@@ -1,12 +1,10 @@
 package com.pieterjd.aemadmin.command.packmgr;
 
-import org.apache.commons.io.IOUtils;
+import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpUriRequest;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.URISyntaxException;
 
 /**
@@ -38,18 +36,17 @@ public class DownloadPackageCommand extends PackageMgrCommand {
 
     @Override
     public void execute() {
-        super.execute();
+
         try {
-            InputStream is = getHttpResponse().getEntity().getContent();
+            CloseableHttpResponse response = getHttpClient().execute(getRequest());
             FileOutputStream fos = new FileOutputStream(getFileName());
-            IOUtils.copy(is,fos);
-            is.close();
+            response.getEntity().writeTo(fos);
             fos.close();
             setSuccess(true);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             setSuccess(false);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         setExecuted(true);
