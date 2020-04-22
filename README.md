@@ -43,22 +43,14 @@ the ``PostProcessCommand`` class tackles.
 A specific PostProcessCommand is already implemented for handling query results, ``QueryPostProcessCommand``.
 
 ## Instance properties
-When running your command, you sometimes need to provide information on the instance you want to run the command on. If you have a main method, you can run this with the
-``-DpropertiesFile=<path to a properties file>``
+When running your command, you sometimes need to provide information on the instance you want to run the command on. 
+You can provide properties on the commandline.
 
-Required properties in this file are:
-* userName (required)
-* password (required)
-* baseUrl (required)
-* port (optional)
+* userName: defaults to ``admin`` if missing
+* password: defaults to ``admin`` if missing
+* baseUrl: defaults to ``http://localhost`` if missing. This is the host running your AEM instance
+* port: defaults to ``4502`` if missing
 
-The properties file for a local author node looks like:
-````
-userName=admin
-password=admin
-baseUrl=http://localhost
-port=4502
-````
 ## Creating a standalone uberjar
 If you want to run your command on a machine and do not want to download the whole codebase,
 you can create a standalone uberjar.
