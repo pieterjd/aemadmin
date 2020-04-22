@@ -30,16 +30,10 @@ import java.io.IOException;
 
 
 public class TestAEMAdmin {
-    private ConfigBuilder configBuilder;
 
-    @Before
-    public void setUp(){
-        configBuilder = new LocalAuthorConfigBuilder();
-    }
     @Test
     public void testLoginCommand() {
         LoginCommand c = new LoginCommand();
-        c.setConfigBuilder(configBuilder);
         c.execute();
         Assert.assertEquals(c.isSuccess(), true);
     }
@@ -47,7 +41,6 @@ public class TestAEMAdmin {
     @Test
     public void testStatusCommand() {
         HttpRequestCommand c = new StatusBundlesCommand();
-        c.setConfigBuilder(configBuilder);
         c.execute();
         try {
             Assert.assertNotNull(c.getHttpResponseAsJSON());
@@ -59,11 +52,9 @@ public class TestAEMAdmin {
     @Test
     public void testGetNodeCommand() {
         HttpRequestCommand c = new GetNodeCommand("/content");
-        c.setConfigBuilder(configBuilder);
         c.execute();
         Assert.assertTrue(c.isSuccess());
         c = new GetNodeCommand("/contentbla");
-        c.setConfigBuilder(configBuilder);
         c.execute();
         Assert.assertFalse(c.isSuccess());
 
@@ -72,11 +63,9 @@ public class TestAEMAdmin {
     @Test
     public void testGetPropertyCommand() {
         GetPropertyCommand gpc = new GetPropertyCommand("/etc/clientlibs/rep:policy/allow", "rep:privileges");
-        gpc.setConfigBuilder(configBuilder);
         gpc.execute();
         Assert.assertTrue(gpc.isMultiValue());
         gpc = new GetPropertyCommand("/etc/clientlibs/rep:policy/allow", "jcr:primaryType");
-        gpc.setConfigBuilder(configBuilder);
         gpc.execute();
         Assert.assertFalse(gpc.isMultiValue());
     }
@@ -90,7 +79,6 @@ public class TestAEMAdmin {
 
         ReorderNodeAfterCommand c = new ReorderNodeAfterCommand("/content/kpngb-base/jcr:content/image-retail",
                 "title-retail");
-        c.setConfigBuilder(configBuilder);
         c.execute();
         System.out.println("Check in crx if order has been updated");
     }
