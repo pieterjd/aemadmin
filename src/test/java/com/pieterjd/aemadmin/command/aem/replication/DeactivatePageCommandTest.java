@@ -19,7 +19,7 @@ public class DeactivatePageCommandTest {
         //check page is on publish
         //check on local publish
         GetPropertyCommand gpc = new GetPropertyCommand(path,"jcr:primaryType");
-        gpc.setConfigBuilder(new LocalPublishConfigBuilder());
+
         gpc.execute();
         assertTrue(gpc.isSuccess());
 

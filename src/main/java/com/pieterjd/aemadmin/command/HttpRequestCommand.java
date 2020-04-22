@@ -40,30 +40,22 @@ public abstract class HttpRequestCommand extends AbstractCommand {
      */
     public HttpRequestCommand() {
 
-       setProperties(ConfigFactory.getConfig());
+       setProperties();
         setHttpClient(HttpClients.createDefault());
     }
 
-    /**
-     * Creates HttpRequestCommand using the given config builder
-     *
-     * @param configBuilder ConfigBuilder used to setup all http requests
-     */
-    public HttpRequestCommand(ConfigBuilder configBuilder) {
-        setConfigBuilder(configBuilder);
-        setHttpClient(HttpClients.createDefault());
-    }
 
-    public void setConfigBuilder(ConfigBuilder configBuilder) {
-        setProperties(configBuilder.build());
-    }
 
     public Properties getProperties() {
         return properties;
     }
 
-    public void setProperties(Properties properties) {
-        this.properties = properties;
+    public void setProperties() {
+        properties = new Properties();
+        properties.setProperty("userName",System.getProperty("userName") != null ? System.getProperty("userName") : "admin");
+        properties.setProperty("password",System.getProperty("password") != null ? System.getProperty("password") : "admin");
+        properties.setProperty("baseUrl",System.getProperty("baseUrl") != null ? System.getProperty("baseUrl") : "http://localhost");
+        properties.setProperty("port",System.getProperty("port") != null ? System.getProperty("port") : "4502");
     }
 
     public String getUserName() {
